@@ -1,13 +1,16 @@
+/* Dev only: */
+/* *{
+  border: 1px solid black;
+} */
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  margin-top: 60px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* Put main theme comopnents here */
+/* main color, seccondary color etc. */

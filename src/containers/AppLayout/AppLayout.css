@@ -1,0 +1,12 @@
+main, aside, .row {
+    min-height: 900px;
+}
+
+main, aside {
+    padding: 1em;
+}
+
+main {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
