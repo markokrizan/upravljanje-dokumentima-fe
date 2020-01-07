@@ -1,3 +1,20 @@
 header {
     height: 60px;
 }
+
+nav {
+    border-bottom: 2px solid black;
+}
+
+.user-nav-menu {
+    position: absolute; 
+    will-change: transform; 
+    top: 0px; 
+    left: 0px; 
+    transform: translate3d(-30px, 19px, 0px);
+}
+
+h2 {
+    display: inline;
+    margin-left: 0.5em;
+}

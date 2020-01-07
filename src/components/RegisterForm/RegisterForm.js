@@ -36,23 +36,35 @@ export default function RegisterForm({register}){
             touched
         }) => 
             <Form>
-                <div>
-                    <Field type="email" name="email" placeholder="Email" />
-                    {errors.email && <p>{errors.email}</p>}
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <Field type="email" name="email" placeholder="Email" class="form-control w-50"/>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        {errors.email && <p>{errors.email}</p>}
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                        <Field type="password" name="password" placeholder="Password" class="form-control w-50"/>
+                    </div> 
+                    <div class="col-md-12 d-flex justify-content-center">
+                        {errors.password && <p>{errors.password}</p>}
+                    </div>  
+                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                        <Field type="text" name="first_name" placeholder="First name" class="form-control w-50" />
+                    </div> 
+                    <div class="col-md-12 d-flex justify-content-center">
+                        {errors.first_name && <p>{errors.first_name}</p>}
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                        <Field type="text" name="last_name" placeholder="Last name" class="form-control w-50" />
+                    </div> 
+                    <div class="col-md-12 d-flex justify-content-center">
+                        {errors.last_name && <p>{errors.last_name}</p>}
+                    </div>
                 </div>
-                <div>
-                    <Field type="password" name="password" placeholder="Password" />
-                    {errors.password && <p>{errors.password}</p>}
-                </div>   
-                <div>
-                    <Field type="text" name="first_name" placeholder="First name" />
-                    {errors.first_name && <p>{errors.first_name}</p>}
-                </div> 
-                <div>
-                    <Field type="text" name="last_name" placeholder="Last name" />
-                    {errors.last_name && <p>{errors.last_name}</p>}
-                </div> 
-                <button disabled={isSubmitting}>Submit</button>
+                <div class="row">
+                    <div class="col-md-12 mt-1"><button class="btn btn-success" disabled={isSubmitting}>Submit</button></div>
+                </div>
             </Form>}
         </Formik>
       );

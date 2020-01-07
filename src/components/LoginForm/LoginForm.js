@@ -32,15 +32,23 @@ export default function LoginForm({login}){
         touched //use if needed
         }) =>
             (<Form>
-                <div>
-                    <Field type="email" name="email" placeholder="Email" />
-                    {errors.email && <p>{errors.email}</p>}
-                </div>
-                <div>
-                    <Field type="password" name="password" placeholder="Password" />
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                      <Field type="email" name="email" placeholder="Email" className="form-control w-50" />
+                  </div>
+                  <div className="col-md-12 d-flex justify-content-center">
+                      {errors.email && <p>{errors.email}</p>}
+                  </div>
+                  <div className="col-md-12 d-flex justify-content-center mt-1">
+                      <Field type="password" name="password" placeholder="Password" className="form-control w-50" />
+                  </div> 
+                  <div className="col-md-12 d-flex justify-content-center">
                     {errors.password && <p>{errors.password}</p>}
-                </div>   
-                <button disabled={isSubmitting}>Submit</button>
+                  </div>
+                </div>
+                <div class="row">  
+                  <div class="col-md-12 mt-1"><button className="btn btn-success" disabled={isSubmitting}>Submit</button></div>
+                </div>
             </Form>)}
         </Formik>
       );

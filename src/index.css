@@ -1,16 +1,11 @@
-/* Dev only: */
-/* *{
-  border: 1px solid black;
-} */
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  margin-top: 60px;
+*{
+	border-radius: 0px !important;
 }
 
-/* Put main theme comopnents here */
-/* main color, seccondary color etc. */
+html, body {
+	height: 100% !important;
+}
+
+#root {
+	height: 100% !important;
+}

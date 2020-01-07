@@ -1,12 +1,17 @@
-main, aside, .row {
-    min-height: 900px;
-}
-
-main, aside {
-    padding: 1em;
+aside {
+    border-right: 2px solid black;
+    padding-right: 0px !important;
 }
 
 main {
-    border-right: 1px solid black;
-    border-left: 1px solid black;
+    height: 100% !important;
+    padding: 1em;
+}
+
+.main-app-area{
+    height: 100% !important;
+}
+
+.public-area{
+    padding: 1em;
 }

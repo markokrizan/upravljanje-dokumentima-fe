@@ -4,12 +4,11 @@ import {
 } from "react-router-dom";
 import Header from '../../components/Header';
 import Side from '../../components/Side';
-import Footer from '../../components/Footer';
-import Routes from '../Routes';
+import ProtectedRoutes from '../ProtectedRoutes';
+import PublicRoutes from '../PublicRoutes';
 
 import './AppLayout.css';
-
-
+ 
 export default function AppLayout({logOut, isLoggedIn, loggedInUser, getMe}) {
 
   useEffect(() => {
@@ -20,18 +19,17 @@ export default function AppLayout({logOut, isLoggedIn, loggedInUser, getMe}) {
       <Router>
         <Fragment>
         <Header logOut = {logOut} loggedInUser = {loggedInUser}/>
-        <div className="row">
+        {!loggedInUser && <div className="public-area">
+          <PublicRoutes/>
+        </div>}
+        {loggedInUser && <div className="row main-app-area">
           <aside className="col-md-2">
             <Side/>
           </aside>
-          <main className="col-md-8">
-            <Routes/>
+          <main className="col-md-10">
+            <ProtectedRoutes/>
           </main>
-          <aside className="col-md-2">
-            <Side/>
-          </aside>
-        </div>
-        <Footer/>
+        </div>}
         </Fragment>
       </Router>
   );

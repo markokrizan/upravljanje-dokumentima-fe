@@ -1,21 +1,25 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import Contacts from './Contacts';
 
-import ProtectedComponent from './ProtectedComponent';
+import { logOut, getMe  } from '../../store/actions/AuthActions';
 
 const mapStateToProps = state => {
-    console.log(state);
-
     return {
       isLoggedIn: state.authUser.isLoggedIn,
       loggedInUser: state.authUser.loggedInUser
     };
 };
   
+  const mapDispatchToProps = {
+    logOut,
+    getMe
+  };
+
 const withConnect = connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )
 
-export default compose(withConnect)(ProtectedComponent)
+export default compose(withConnect)(Contacts)

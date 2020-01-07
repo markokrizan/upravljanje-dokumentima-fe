@@ -1,32 +1,13 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function Side(){
     return (
-        <div className = "container">
-            <div className="card m-2">
-                <div className="card-body">
-                   <h4 className="card-title">Google ad title</h4>
-                   <p className="card-text">Google ad text content</p>
-                </div>
-             </div>
-             <div className="card m-2">
-                <div className="card-body">
-                   <h4 className="card-title">Google ad title</h4>
-                   <p className="card-text">Google ad text content</p>
-                </div>
-             </div>
-             <div className="card m-2">
-                <div className="card-body">
-                   <h4 className="card-title">Google ad title</h4>
-                   <p className="card-text">Google ad text content</p>
-                </div>
-             </div>
-             <div className="card m-2">
-                <div className="card-body">
-                   <h4 className="card-title">Google ad title</h4>
-                   <p className="card-text">Google ad text content</p>
-                </div>
-             </div>
-        </div>
+      <div class="list-group m-0 p-0 w-100">
+         <Link to="/inbox" class="list-group-item list-group-item-action">Inbox</Link>
+         <Link to="/sent" class="list-group-item list-group-item-action">Sent</Link>
+         <Link to="/spam" class="list-group-item list-group-item-action" >Spam</Link>
+         <Link to="/deleted" class="list-group-item list-group-item-action">Deleted</Link>
+      </div>
     );
 }
