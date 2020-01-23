@@ -1,10 +1,10 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  LOGIN: '/api/auth/login',
+  LOGIN: '/api/auth/signin',
   REGISTER: '/api/auth/register',
   LOGOUT: 'api/auth/logout',
-  ME: '/api/auth/me'
+  ME: '/api/user/me'
 };
 
 class AuthService extends ApiService {
@@ -63,12 +63,12 @@ class AuthService extends ApiService {
 
   getToken = () => {
     const user = localStorage.getItem('user');
-    return user ? JSON.parse(user).access_token : undefined;
+    return user ? JSON.parse(user).accessToken : undefined;
   };
 
   isAuthenticated = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    return user && user.access_token ? true : false;
+    return user && user.accessToken ? true : false;
   };
 
   getUser = () => {

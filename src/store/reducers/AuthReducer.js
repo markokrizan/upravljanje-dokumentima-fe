@@ -3,13 +3,8 @@ import AuthService from '../../services/AuthService';
 
 
 const initialState = {
-  //Switch this while testing:
-
-  // isLoggedIn: AuthService.isAuthenticated(),
-  // loggedInUser: null,
-
-  isLoggedIn: true,
-  loggedInUser: {name : 'Marko'}
+  isLoggedIn: AuthService.isAuthenticated(),
+  loggedInUser: null
 };
 
 const authReducer = (state = initialState, action) => {

@@ -12,9 +12,9 @@ const mapStateToProps = state => {
     };
   };
   
-  const mapDispatchToProps = {
-    logIn
-  };
+const mapDispatchToProps = {
+  logIn
+};
 
 const withConnect = connect(
   mapStateToProps,

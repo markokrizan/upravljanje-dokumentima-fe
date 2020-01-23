@@ -5,13 +5,13 @@ import './LoginForm.css';
 
 export default function LoginForm({login}){
     const initialValues = {
-        email: '',
+        usernameOrEmail : '',
         password: ''
       }
     
       const validationSchema = Yup.object().shape({
-        email: Yup.string().email('Please provide a valid email address.').required('Email address is required'),
-        password: Yup.string()
+        usernameOrEmail: Yup.string().required('Username is required'),
+        password: Yup.string().required('Password is required')
       });
     
       const handleSubmit = (values, { resetForm, setErrors, setSubmitting}) => {
@@ -34,10 +34,10 @@ export default function LoginForm({login}){
             (<Form>
                 <div className="row">
                   <div className="col-md-12 d-flex justify-content-center">
-                      <Field type="email" name="email" placeholder="Email" className="form-control w-50" />
+                      <Field type="text" name="usernameOrEmail" placeholder="Email" className="form-control w-50" />
                   </div>
                   <div className="col-md-12 d-flex justify-content-center">
-                      {errors.email && <p>{errors.email}</p>}
+                      {errors.usernameOrEmail && <p>{errors.usernameOrEmail}</p>}
                   </div>
                   <div className="col-md-12 d-flex justify-content-center mt-1">
                       <Field type="password" name="password" placeholder="Password" className="form-control w-50" />
