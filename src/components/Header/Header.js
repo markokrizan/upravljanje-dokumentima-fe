@@ -9,9 +9,9 @@ export default function Header({logOut, loggedInUser}){
 
     return (
         <div>
-            <nav class="navbar navbar-light border-dark">
-                <div class="container-fluid">
-                    <Link to='/' class="navbar-brand" href="#">
+            <nav className="navbar navbar-light border-dark">
+                <div className="container-fluid">
+                    <Link to='/' className="navbar-brand">
                         <i className="fa fa-envelope-o fa-2x"></i>
                         <h2>Mail App</h2>
                     </Link>

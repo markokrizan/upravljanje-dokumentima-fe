@@ -1,0 +1,2 @@
+export const GET_MY_ACCOUNTS = 'GET_MY_ACCOUNTS';
+export const SET_MY_ACCOUNTS = 'SET_MY_ACCOUNTS';

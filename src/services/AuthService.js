@@ -4,7 +4,7 @@ const ENDPOINTS = {
   LOGIN: '/api/auth/signin',
   REGISTER: '/api/auth/signup',
   LOGOUT: 'api/auth/logout',
-  ME: '/api/user/me'
+  ME: '/api/users/me'
 };
 
 class AuthService extends ApiService {

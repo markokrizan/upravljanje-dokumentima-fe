@@ -3,19 +3,17 @@ import { compose } from 'redux';
 
 import MyAccounts from './MyAccounts';
 
-import { logOut, getMe  } from '../../store/actions/AuthActions';
+import { getMyAccounts  } from '../../store/actions/AccountActions';
 
 const mapStateToProps = state => {
     return {
-      isLoggedIn: state.authUser.isLoggedIn,
-      loggedInUser: state.authUser.loggedInUser 
+      myAccounts: state.account.myAccounts
     };
 };
   
-  const mapDispatchToProps = {
-    logOut,
-    getMe
-  };
+const mapDispatchToProps = {
+  getMyAccounts
+};
 
 const withConnect = connect(
   mapStateToProps,
