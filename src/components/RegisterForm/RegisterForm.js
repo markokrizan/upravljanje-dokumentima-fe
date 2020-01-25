@@ -5,22 +5,21 @@ import './RegisterForm.css';
 
 export default function RegisterForm({register}){
     const initialValues = {
-        email: '',
+        username: '',
         password: '',
-        first_name: '',
-        last_name: ''
+        firstName: '',
+        lastName: ''
       }
     
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email('Please provide a valid email address.').required('Email address is required'),
+        username: Yup.string().required('Username is required'),
         password: Yup.string().min(6, 'Password must be at least 6 characters').required(),
-        first_name: Yup.string().required(),
-        last_name: Yup.string().required()
+        firstName: Yup.string().required(),
+        lastName: Yup.string().required()
     });
 
     const handleSubmit = (values, { resetForm, setErrors, setSubmitting}) => {
         register(values, setErrors);
-        resetForm();
         setSubmitting(false);
     }
 
@@ -38,10 +37,10 @@ export default function RegisterForm({register}){
             <Form>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-center">
-                        <Field type="email" name="email" placeholder="Email" class="form-control w-50"/>
+                        <Field type="text" name="username" placeholder="Username" class="form-control w-50"/>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center">
-                        {errors.email && <p>{errors.email}</p>}
+                        {errors.username && <p>{errors.username}</p>}
                     </div>
                     <div class="col-md-12 d-flex justify-content-center mt-1">
                         <Field type="password" name="password" placeholder="Password" class="form-control w-50"/>
@@ -50,16 +49,16 @@ export default function RegisterForm({register}){
                         {errors.password && <p>{errors.password}</p>}
                     </div>  
                     <div class="col-md-12 d-flex justify-content-center mt-1">
-                        <Field type="text" name="first_name" placeholder="First name" class="form-control w-50" />
+                        <Field type="text" name="firstName" placeholder="First name" class="form-control w-50" />
                     </div> 
                     <div class="col-md-12 d-flex justify-content-center">
-                        {errors.first_name && <p>{errors.first_name}</p>}
+                        {errors.firstName && <p>{errors.firstName}</p>}
                     </div>
                     <div class="col-md-12 d-flex justify-content-center mt-1">
-                        <Field type="text" name="last_name" placeholder="Last name" class="form-control w-50" />
+                        <Field type="text" name="lastName" placeholder="Last name" class="form-control w-50" />
                     </div> 
                     <div class="col-md-12 d-flex justify-content-center">
-                        {errors.last_name && <p>{errors.last_name}</p>}
+                        {errors.lastName && <p>{errors.lastName}</p>}
                     </div>
                 </div>
                 <div class="row">

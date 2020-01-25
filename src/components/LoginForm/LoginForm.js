@@ -5,18 +5,17 @@ import './LoginForm.css';
 
 export default function LoginForm({login}){
     const initialValues = {
-        usernameOrEmail : '',
+        username : '',
         password: ''
       }
     
       const validationSchema = Yup.object().shape({
-        usernameOrEmail: Yup.string().required('Username is required'),
+        username: Yup.string().required('Username is required'),
         password: Yup.string().required('Password is required')
       });
     
-      const handleSubmit = (values, { resetForm, setErrors, setSubmitting}) => {
+      const handleSubmit = (values, { setErrors, setSubmitting}) => {
         login(values, setErrors);
-        resetForm();
         setSubmitting(false);
       }
 
@@ -34,10 +33,10 @@ export default function LoginForm({login}){
             (<Form>
                 <div className="row">
                   <div className="col-md-12 d-flex justify-content-center">
-                      <Field type="text" name="usernameOrEmail" placeholder="Email" className="form-control w-50" />
+                      <Field type="text" name="username" placeholder="Username" className="form-control w-50" />
                   </div>
                   <div className="col-md-12 d-flex justify-content-center">
-                      {errors.usernameOrEmail && <p>{errors.usernameOrEmail}</p>}
+                      {errors.username && <p>{errors.username}</p>}
                   </div>
                   <div className="col-md-12 d-flex justify-content-center mt-1">
                       <Field type="password" name="password" placeholder="Password" className="form-control w-50" />

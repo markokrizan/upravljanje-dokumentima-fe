@@ -2,7 +2,7 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   LOGIN: '/api/auth/signin',
-  REGISTER: '/api/auth/register',
+  REGISTER: '/api/auth/signup',
   LOGOUT: 'api/auth/logout',
   ME: '/api/user/me'
 };

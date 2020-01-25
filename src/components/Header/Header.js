@@ -5,7 +5,7 @@ import './Header.css';
 
 export default function Header({logOut, loggedInUser}){
 
-    const renderUser = () => loggedInUser && `${loggedInUser.first_name} ${loggedInUser.last_name}`;
+    const renderUser = () => loggedInUser && `${loggedInUser.firstName} ${loggedInUser.lastName}`;
 
     return (
         <div>
@@ -19,8 +19,10 @@ export default function Header({logOut, loggedInUser}){
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             Account
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
+                            <Dropdown.Item>
+                                <p>{renderUser()}</p>
+                            </Dropdown.Item>
                             <Dropdown.Item>
                                 <Link to="/contacts">Contacts</Link>
                             </Dropdown.Item>
@@ -28,7 +30,7 @@ export default function Header({logOut, loggedInUser}){
                                 <Link to="/my-accounts">My Accounts</Link>
                             </Dropdown.Item>
                             <Dropdown.Divider />
-                            <Dropdown.Item>Logout</Dropdown.Item>
+                            <Dropdown.Item onClick={() => logOut()}>Logout</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>}
                 </div>
