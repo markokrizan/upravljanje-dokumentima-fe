@@ -9,7 +9,7 @@ export default function AccountSettings(){
     const [modalShow, setModalShow] = React.useState(false);
 
     return (
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
@@ -25,6 +25,7 @@ export default function AccountSettings(){
                 header={'Contact'}
                 body={<SingleContact/>}
                 actions={<button onClick={() => setModalShow(false)}>Close</button>}
+                onHide={() => setModalShow(false)}
               />
             </ButtonToolbar>
           </div>

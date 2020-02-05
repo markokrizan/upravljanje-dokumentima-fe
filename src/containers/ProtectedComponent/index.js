@@ -5,8 +5,6 @@ import { compose } from 'redux';
 import ProtectedComponent from './ProtectedComponent';
 
 const mapStateToProps = state => {
-    console.log(state);
-
     return {
       isLoggedIn: state.authUser.isLoggedIn,
       loggedInUser: state.authUser.loggedInUser

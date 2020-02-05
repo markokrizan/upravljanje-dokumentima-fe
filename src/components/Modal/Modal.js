@@ -3,12 +3,12 @@ import { Modal as BootstrapModal } from 'react-bootstrap';
 
 export default function Modal(props) {
     return (<BootstrapModal
-      {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      {...props}
     >
-      <BootstrapModal.Header closeButton>
+      <BootstrapModal.Header>
         <BootstrapModal.Title id="contained-modal-title-vcenter">
           {props.header}
         </BootstrapModal.Title>
