@@ -1,43 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ContactForm from '../ContactForm';
 
-export default function SingleContact(){
-    return(
-        <div class="card-body">
-        <div class="row">
-          <div class="col-md-12 d-flex justify-content-center">
-            <img class="d-block" src="https://static.pingendo.com/img-placeholder-1.svg" width="150" height="150"/>
-          </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6 d-flex align-items-center border-right justify-content-end"><label>First name:</label></div>
-          <div class="col-md-6 d-flex justify-content-start">
-            <input type="text"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 d-flex align-items-center border-right justify-content-end"><label>Last name:</label></div>
-          <div class="col-md-6 d-flex justify-content-start">
-            <input type="text"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 d-flex align-items-center border-right justify-content-end"><label>Display name:</label></div>
-          <div class="col-md-6 d-flex justify-content-start">
-            <input type="text"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 d-flex align-items-center border-right justify-content-end"><label>Email:</label></div>
-          <div class="col-md-6 d-flex justify-content-start">
-            <input type="text"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 d-flex align-items-center border-right justify-content-end"><label>Note:</label></div>
-          <div class="col-md-6 d-flex justify-content-start">
-            <input type="text"/>
-          </div>
-        </div>
+export default function SingleContact({
+  contact,
+  saveContact,
+  closeModal
+}){
+  const [photo, setPhoto] = useState(null); 
+  //const [source, setSource] = useState('');
+
+  const onFileUpload = event => {
+    const [file] = event.currentTarget.files;
+    setPhoto(file);
+  };
+
+  const handleSaveContact = (formData, setErrors) => {
+    saveContact({photo, ...formData}, setErrors);
+  }
+
+  return(
+    <div className="card-body">
+      <div class="col-md-12 d-flex justify-content-center">
+        <img class="d-block" src="https://static.pingendo.com/img-placeholder-1.svg" width="150" height="150"/>
       </div>
-    )
+      <input 
+        type="file" 
+        accept="image/*"
+        onChange={event => {
+          const [file] = event.target.files;
+          //setSource(URL.createObjectURL(file));
+          onFileUpload(event);
+        }}
+      />
+      <ContactForm 
+        contact={contact} 
+        saveContact={handleSaveContact}
+        closeModal={closeModal}
+      />
+    </div>
+  )
 }

@@ -3,7 +3,7 @@ import {Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './AccountForm.css';
 
-export default function AccountForm({account, saveAccount}){
+export default function AccountForm({account, saveAccount, closeModal}){
     const initialValues = {
         smtpAdress : '',
         smtpPort: '',
@@ -30,6 +30,7 @@ export default function AccountForm({account, saveAccount}){
       const handleSubmit = (values, { setErrors, setSubmitting}) => {
         saveAccount(values, setErrors);
         setSubmitting(false);
+        closeModal();
       }
 
     return (

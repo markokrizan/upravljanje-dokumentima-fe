@@ -3,7 +3,11 @@ import { compose } from 'redux';
 
 import MyAccounts from './MyAccounts';
 
-import { getMyAccounts  } from '../../store/actions/AccountActions';
+import { 
+  getMyAccounts, 
+  saveAccount,
+  deleteAccount
+} from '../../store/actions/AccountActions';
 
 const mapStateToProps = state => {
     return {
@@ -12,7 +16,9 @@ const mapStateToProps = state => {
 };
   
 const mapDispatchToProps = {
-  getMyAccounts
+  getMyAccounts,
+  saveAccount,
+  deleteAccount
 };
 
 const withConnect = connect(

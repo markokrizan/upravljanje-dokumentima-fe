@@ -3,19 +3,18 @@ import { compose } from 'redux';
 
 import Contacts from './Contacts';
 
-import { logOut, getMe  } from '../../store/actions/AuthActions';
+import { getMyContacts, saveContact  } from '../../store/actions/ContactActions';
 
 const mapStateToProps = state => {
     return {
-      isLoggedIn: state.authUser.isLoggedIn,
-      loggedInUser: state.authUser.loggedInUser
+      contacts: state.contact.myContacts
     };
 };
   
-  const mapDispatchToProps = {
-    logOut,
-    getMe
-  };
+const mapDispatchToProps = {
+  getMyContacts,
+  saveContact
+};
 
 const withConnect = connect(
   mapStateToProps,

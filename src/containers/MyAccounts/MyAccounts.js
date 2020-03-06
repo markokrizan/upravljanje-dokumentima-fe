@@ -1,18 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonToolbar } from 'react-bootstrap';
 import AccountListItem from '../../components/AccountListItem';
 import SingleAccount from '../../components/SingleAccount';
 import Modal from '../../components/Modal';
 
-export default function MyAccounts({ myAccounts, getMyAccounts}){
-    const [modalShow, setModalShow] = React.useState(false);
+export default function MyAccounts({ 
+    myAccounts,
+    getMyAccounts,
+    saveAccount,
+    deleteAccount
+}){
+    const [modalShow, setModalShow] = useState(false);
 
     useEffect(() => {
         getMyAccounts();
     }, []);
 
     const renderAccounts = () => myAccounts.length && myAccounts.map(account => {
-        return <AccountListItem account={account} />;
+        return <AccountListItem 
+            account={account} 
+            saveAccount={saveAccount}
+            deleteAccount={deleteAccount}
+        />;
     });
 
     return (
@@ -27,7 +36,12 @@ export default function MyAccounts({ myAccounts, getMyAccounts}){
                             <Modal
                                 show={modalShow}
                                 header={'New Account'}
-                                body={<SingleAccount/>}
+                                body={
+                                    <SingleAccount
+                                        saveAccount={saveAccount}
+                                        closeModal={() => setModalShow(false)}
+                                    />
+                                }
                                 actions={<button onClick={() => setModalShow(false)}>Close</button>}
                                 onHide={() => setModalShow(false)}
                             />
