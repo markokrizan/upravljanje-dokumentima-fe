@@ -35,7 +35,7 @@ export default function AccountListItem ({
                         saveAccount={saveAccount}
                         closeModal={closeModal}
                     />}
-                actions={<button onClick={closeModal}>Close</button>}
+                actions={<button className="btn btn-success" onClick={closeModal}>Close</button>}
             />
         </li>
     );

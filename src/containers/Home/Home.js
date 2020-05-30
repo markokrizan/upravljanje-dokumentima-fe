@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import './Home.css';
 
 export default function Home(){
     return (
         <div>
-            <div class="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
+            <div class="row d-flex justify-content-between align-items-center border-dark mb-2 p-1 test">
                 <div class="input-group w-25">
                 <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search"/>
                 <div class="input-group-append"><button class="btn btn-success" type="button"><i class="fa fa-search"></i></button></div>

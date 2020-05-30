@@ -39,7 +39,7 @@ export default function Contacts({ getMyContacts, saveContact, contacts }){
                   saveContact={saveContact}
                   closeModal={() => setModalShow(false)}
                 />}
-                actions={<button onClick={() => setModalShow(false)}>Close</button>}
+                actions={<button class="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
                 onHide={() => setModalShow(false)}
               />
             </ButtonToolbar>

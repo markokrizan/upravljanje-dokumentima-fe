@@ -35,10 +35,8 @@ export default function ContactListItem ({
                         saveContact={saveContact}
                         closeModal={closeModal}
                     />}
-                actions={<button onClick={closeModal}>Close</button>}
+                actions={<button className="btn btn-success" onClick={closeModal}>Close</button>}
             />
         </li> 
     );
 };
-
-

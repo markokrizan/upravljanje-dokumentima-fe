@@ -42,7 +42,7 @@ export default function MyAccounts({
                                         closeModal={() => setModalShow(false)}
                                     />
                                 }
-                                actions={<button onClick={() => setModalShow(false)}>Close</button>}
+                                actions={<button class="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
                                 onHide={() => setModalShow(false)}
                             />
                         </ButtonToolbar>

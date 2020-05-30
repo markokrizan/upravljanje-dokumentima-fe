@@ -1,0 +1,9 @@
+.upload-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-input {
+    width: 100px;
+    margin: 10px;
+}

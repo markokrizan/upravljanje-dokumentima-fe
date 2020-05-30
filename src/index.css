@@ -9,3 +9,13 @@ html, body {
 #root {
 	height: 100% !important;
 }
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}

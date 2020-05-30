@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ContactForm from '../ContactForm';
+import './SingleContact.css';
 
 export default function SingleContact({
   contact,
@@ -20,11 +21,11 @@ export default function SingleContact({
 
   return(
     <div className="card-body">
-      <div class="col-md-12 d-flex justify-content-center">
+      <div class="col-md-12 d-flex upload-container">
         <img class="d-block" src="https://static.pingendo.com/img-placeholder-1.svg" width="150" height="150"/>
-      </div>
-      <input 
+        <input 
         type="file" 
+        class="form-control-file file-input"
         accept="image/*"
         onChange={event => {
           const [file] = event.target.files;
@@ -32,6 +33,7 @@ export default function SingleContact({
           onFileUpload(event);
         }}
       />
+      </div>
       <ContactForm 
         contact={contact} 
         saveContact={handleSaveContact}
