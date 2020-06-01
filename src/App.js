@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory as createHistory } from 'history'
 
 import './App.css';
 import AppLayout from './containers/AppLayout';

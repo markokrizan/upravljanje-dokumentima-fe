@@ -26,7 +26,7 @@ export function* myAccountsGet() {
 export function* accountSave({payload, meta: {setErrors}}) {
   try {
     const { data } = yield call(accountService.saveAccount, payload);
-    yield put(setSavedAccount(data));
+    yield put(setMyAccounts(data));
   } catch (error) {
     if (error.response.status === VALIDATION_FAILED) {
       yield call(setErrors, parseApiErrorsToFormik(error.response.data.errors));

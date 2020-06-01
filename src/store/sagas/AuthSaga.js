@@ -45,7 +45,13 @@ export function* meGet() {
     const user = yield call(AuthService.getMe);
     yield put(setMe(user));
   } catch (error) {
-    //TODO handle with generic snackbar
+    if(error.response.status === UNAUTHORIZED) {
+      AuthService.destroySession();
+
+      yield put(push('/login'));
+      yield put(go());
+      return;
+    }
   }
 }
 

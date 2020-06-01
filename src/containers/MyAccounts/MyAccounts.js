@@ -31,7 +31,7 @@ export default function MyAccounts({
                     <div className="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
                         <h3>Accounts in use:</h3>
                         <ButtonToolbar>
-                            <button class="btn btn-success"  onClick={() => setModalShow(true)}>+</button>
+                            <button className="btn btn-success"  onClick={() => setModalShow(true)}>+</button>
 
                             <Modal
                                 show={modalShow}
@@ -42,7 +42,7 @@ export default function MyAccounts({
                                         closeModal={() => setModalShow(false)}
                                     />
                                 }
-                                actions={<button class="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
+                                actions={<button className="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
                                 onHide={() => setModalShow(false)}
                             />
                         </ButtonToolbar>

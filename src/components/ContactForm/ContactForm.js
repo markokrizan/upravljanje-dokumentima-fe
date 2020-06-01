@@ -38,41 +38,41 @@ export default function ContactForm({contact, saveContact, closeModal}){
             touched
         }) =>
             (<Form>
-                  <div class="row">
-                    <div class="col-md-12 d-flex justify-content-center">
+                  <div className="row">
+                    <div className="col-md-12 d-flex justify-content-center">
                         <Field type="text" name="firstName" placeholder="First name" className="form-control w-50" />
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                         {errors.firstName && <p>{errors.firstName}</p>}
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
                         <Field type="text" name="lastName" placeholder="Last name" className="form-control w-50" />
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                          {errors.lastName && <p>{errors.lastName}</p>}
                     </div>  
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
                         <Field type="text" name="displayName" placeholder="Display name" className="form-control w-50" />
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                          {errors.displayName && <p>{errors.displayName}</p>}
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
                         <Field type="email" name="email" placeholder="Email" className="form-control w-50" />
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                          {errors.email && <p>{errors.email}</p>}
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
                         <Field type="text" name="note" placeholder="Note" className="form-control w-50" />
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                         {errors.note && <p>{errors.note}</p>}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 mt-1  d-flex justify-content-center">
-                        <button class="btn btn-success" disabled={isSubmitting}>Save</button>
+                <div className="row">
+                    <div className="col-md-12 mt-1  d-flex justify-content-center">
+                        <button className="btn btn-success" disabled={isSubmitting}>Save</button>
                     </div>
                 </div>
           </Form>)}

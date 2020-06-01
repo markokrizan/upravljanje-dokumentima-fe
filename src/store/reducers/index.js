@@ -5,6 +5,7 @@ import authReducer from './AuthReducer';
 import errorReducer from './ErrorReducer';
 import accountReducer from './AccountReducer';
 import contactReducer from './ContactReducer';
+import folderReducer from './FolderReducer';
 
 export default history =>
   combineReducers({
@@ -12,5 +13,6 @@ export default history =>
     error: errorReducer,
     account: accountReducer,
     contact: contactReducer,
+    folder: folderReducer,
     router: connectRouter(history)
   });

@@ -45,8 +45,8 @@ export default function LoginForm({login}){
                     {errors.password && <p>{errors.password}</p>}
                   </div>
                 </div>
-                <div class="row">  
-                  <div class="col-md-12 mt-1"><button className="btn btn-success" disabled={isSubmitting}>Submit</button></div>
+                <div className="row">  
+                  <div className="col-md-12 mt-1"><button className="btn btn-success" disabled={isSubmitting}>Submit</button></div>
                 </div>
             </Form>)}
         </Formik>

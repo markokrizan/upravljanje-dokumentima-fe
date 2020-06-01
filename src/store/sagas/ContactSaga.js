@@ -13,7 +13,6 @@ import parseApiErrorsToFormik from '../../util/parseApiErrorsToFormik';
 
 
 export function* myContactsGet() {
-  console.log('here');
   try {
     const { data } = yield call(contactService.getMyContacts);
     yield put(setMyContacts(data));

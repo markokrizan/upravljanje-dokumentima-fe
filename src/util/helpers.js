@@ -22,3 +22,11 @@ export const removeFromStateList = (state, stateKey, entityId) => {
         return item.id != entityId;
     })}
 }
+
+export const getDefaultUserAccount = accounts => {
+  if(!accounts) {
+    return null;
+  }
+
+  return accounts.filter(account => account.isActive)[0];
+}

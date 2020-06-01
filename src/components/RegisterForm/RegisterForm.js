@@ -35,34 +35,34 @@ export default function RegisterForm({register}){
             touched
         }) => 
             <Form>
-                <div class="row">
-                    <div class="col-md-12 d-flex justify-content-center">
-                        <Field type="text" name="username" placeholder="Username" class="form-control w-50"/>
+                <div className="row">
+                    <div className="col-md-12 d-flex justify-content-center">
+                        <Field type="text" name="username" placeholder="Username" className="form-control w-50"/>
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                         {errors.username && <p>{errors.username}</p>}
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
-                        <Field type="password" name="password" placeholder="Password" class="form-control w-50"/>
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
+                        <Field type="password" name="password" placeholder="Password" className="form-control w-50"/>
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                         {errors.password && <p>{errors.password}</p>}
                     </div>  
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
-                        <Field type="text" name="firstName" placeholder="First name" class="form-control w-50" />
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
+                        <Field type="text" name="firstName" placeholder="First name" className="form-control w-50" />
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                         {errors.firstName && <p>{errors.firstName}</p>}
                     </div>
-                    <div class="col-md-12 d-flex justify-content-center mt-1">
-                        <Field type="text" name="lastName" placeholder="Last name" class="form-control w-50" />
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
+                        <Field type="text" name="lastName" placeholder="Last name" className="form-control w-50" />
                     </div> 
-                    <div class="col-md-12 d-flex justify-content-center">
+                    <div className="col-md-12 d-flex justify-content-center">
                         {errors.lastName && <p>{errors.lastName}</p>}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 mt-1"><button class="btn btn-success" disabled={isSubmitting}>Submit</button></div>
+                <div className="row">
+                    <div className="col-md-12 mt-1"><button className="btn btn-success" disabled={isSubmitting}>Submit</button></div>
                 </div>
             </Form>}
         </Formik>

@@ -21,11 +21,11 @@ export default function SingleContact({
 
   return(
     <div className="card-body">
-      <div class="col-md-12 d-flex upload-container">
-        <img class="d-block" src="https://static.pingendo.com/img-placeholder-1.svg" width="150" height="150"/>
+      <div className="col-md-12 d-flex upload-container">
+        <img className="d-block" src="https://static.pingendo.com/img-placeholder-1.svg" width="150" height="150"/>
         <input 
         type="file" 
-        class="form-control-file file-input"
+        className="form-control-file file-input"
         accept="image/*"
         onChange={event => {
           const [file] = event.target.files;

@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 import Header from '../../components/Header';
-import Side from '../../components/Side';
+import Side from '../Side';
 import ProtectedRoutes from '../ProtectedRoutes';
 import PublicRoutes from '../PublicRoutes';
 

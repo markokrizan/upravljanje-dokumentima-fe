@@ -1,7 +1,9 @@
 import React from 'react'
-import {Formik, Form, Field, ErrorMessage } from 'formik';
+import {Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import './AccountForm.css';
+
+import Checkbox from '../Checkbox';
 
 export default function AccountForm({account, saveAccount, closeModal}){
     const initialValues = {
@@ -13,6 +15,7 @@ export default function AccountForm({account, saveAccount, closeModal}){
         username: '',
         password: '',
         displayName: '',
+        isActive: false,
         ...account
       }
     
@@ -42,7 +45,7 @@ export default function AccountForm({account, saveAccount, closeModal}){
         {({
             isSubmitting,
             errors,
-            touched
+            setFieldValue
         }) =>
             (<Form>
                   <div className="row">
@@ -83,7 +86,7 @@ export default function AccountForm({account, saveAccount, closeModal}){
                          {errors.username && <p>{errors.username}</p>}
                     </div>
                     <div className="col-md-12 d-flex justify-content-center mt-1">
-                        <Field type="text" name="password" placeholder="Password" className="form-control w-50" />
+                        <Field type="password" name="password" placeholder="Password" className="form-control w-50" />
                     </div> 
                     <div className="col-md-12 d-flex justify-content-center">
                         {errors.password && <p>{errors.password}</p>}
@@ -94,9 +97,15 @@ export default function AccountForm({account, saveAccount, closeModal}){
                     <div className="col-md-12 d-flex justify-content-center">
                         {errors.displayName && <p>{errors.displayName}</p>}
                     </div>
+                    <div className="col-md-12 d-flex justify-content-center mt-1">
+                        <Checkbox name="isActive" value={account.isActive}/>
+                    </div> 
+                    <div className="col-md-12 d-flex justify-content-center">
+                        {errors.isActive && <p>{errors.isActive}</p>}
+                    </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12 mt-1 d-flex justify-content-center">
+                    <div className="col-md-12 mt-2 d-flex justify-content-center">
                         <button className="btn btn-success" disabled={isSubmitting}>Save</button>
                     </div>
                 </div>

@@ -1,0 +1,6 @@
+export const GET_FOLDERS = 'GET_FOLDERS';
+export const SET_FOLDERS = 'SET_FOLDERS';
+export const SAVE_FOLDER = 'SAVE_FOLDER';
+export const SET_SAVED_FOLDER = 'SET_SAVED_FOLDER';
+export const DELETE_FOLDER = 'DELETE_FOLDER';
+export const SET_DELETED_FOLDER = 'SET_DELETED_FOLDER';

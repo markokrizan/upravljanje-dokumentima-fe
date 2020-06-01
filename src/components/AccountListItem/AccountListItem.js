@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SingleAccount from '../../components/SingleAccount';
 import Modal from '../../components/Modal';
+import './AccountListItem.css';
 
 export default function AccountListItem ({
     account, 
@@ -15,7 +16,14 @@ export default function AccountListItem ({
 
     return(
         <li 
-            className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            className={`
+                list-group-item 
+                list-group-item-action 
+                d-flex 
+                justify-content-between 
+                align-items-center
+                ${account.isActive ? 'account-active' : ''}
+            `}
         >
             <span>{account.username}</span>
             <span>
