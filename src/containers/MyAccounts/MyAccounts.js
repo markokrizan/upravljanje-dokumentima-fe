@@ -18,6 +18,7 @@ export default function MyAccounts({
 
     const renderAccounts = () => myAccounts.length && myAccounts.map(account => {
         return <AccountListItem 
+            key={account.id}
             account={account} 
             saveAccount={saveAccount}
             deleteAccount={deleteAccount}

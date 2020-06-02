@@ -1,11 +1,13 @@
 import React from 'react'
 import {Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+
 import './FolderForm.css';
 
-export default function FolderForm ({ saveFolder, account, setShowFolderModal }){
+export default function FolderForm ({ saveFolder, account, setShowFolderModal, folder }){
     const initialValues = {
         name : '',
+        ...folder
     }
     
     const validationSchema = Yup.object().shape({
@@ -15,14 +17,15 @@ export default function FolderForm ({ saveFolder, account, setShowFolderModal })
     const handleSubmit = (values, { setErrors, setSubmitting }) => {
         saveFolder({ values, account }, setErrors);
         setSubmitting(false);
-        setShowFolderModal(false);
+        setShowFolderModal && setShowFolderModal(false);
     }
 
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema = {validationSchema}
+            validationSchema={validationSchema}
             onSubmit={handleSubmit}
+            enableReinitialize={true}
         >
         {({
         isSubmitting,
@@ -39,7 +42,7 @@ export default function FolderForm ({ saveFolder, account, setShowFolderModal })
                   </div>
                 </div>
                 <div className="row">  
-                  <div className="col-md-12 mt-1"><button className="btn btn-success" disabled={isSubmitting}>Save</button></div>
+                  <div className="col-md-12 mt-1"><button className="btn btn-success" disabled={isSubmitting} type="submit">Save</button></div>
                 </div>
             </Form>)}
         </Formik>

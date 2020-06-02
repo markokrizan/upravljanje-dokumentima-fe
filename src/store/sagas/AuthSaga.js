@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { push, go } from 'connected-react-router';
 import { LOGIN, REGISTER, GET_ME, LOGOUT} from '../actions/AuthActionTypes';
 import { authUser, loginError, registerError, setMe } from '../actions/AuthActions';
+import { setMyAccounts } from '../actions/AccountActions';
 import AuthService from '../../services/AuthService';
 import parseApiErrorsToFormik from '../../util/parseApiErrorsToFormik';
 import {UNAUTHORIZED, VALIDATION_FAILED} from '../../util/httpStatusCodes';
@@ -44,6 +45,7 @@ export function* meGet() {
   try {
     const user = yield call(AuthService.getMe);
     yield put(setMe(user));
+    yield put(setMyAccounts(user.accounts));
   } catch (error) {
     if(error.response.status === UNAUTHORIZED) {
       AuthService.destroySession();

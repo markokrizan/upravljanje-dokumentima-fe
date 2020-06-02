@@ -23,11 +23,11 @@ export default function Header({logOut, loggedInUser}){
                             <Dropdown.Item>
                                 <p>{renderUser()}</p>
                             </Dropdown.Item>
-                            <Dropdown.Item>
-                                <Link to="/contacts">Contacts</Link>
+                            <Dropdown.Item href="/contacts">
+                                Contacts
                             </Dropdown.Item>
-                            <Dropdown.Item>
-                                <Link to="/my-accounts">My Accounts</Link>
+                            <Dropdown.Item href="/my-accounts">
+                                My Accounts
                             </Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={() => logOut()}>Logout</Dropdown.Item>

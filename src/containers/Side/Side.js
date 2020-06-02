@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { ButtonToolbar } from 'react-bootstrap';
 
 import Modal from '../../components/Modal';
-import FolderForm from '../../components/FolderForm';
+import FolderManager from '../FolderManager';
 import FolderList from '../../components/FolderList';
-import { getDefaultUserAccount } from '../../util/helpers';
 
-export default function Side({ folders, defaultAccount, loggedInUser, getFolders, saveFolder }){
+export default function Side({ folders, defaultAccount, loggedInUser, getFolders }){
     const [showFolderModal, setShowFolderModal] = useState(false);
   
     useEffect(() => {
@@ -20,16 +19,14 @@ export default function Side({ folders, defaultAccount, loggedInUser, getFolders
         {folders.length ? <FolderList folders={folders}/> : <p>No folders yet!</p>}
         {defaultAccount ? <div className='d-flex align-items-center flex-column mt-1'>
           <ButtonToolbar >
-            <button className="btn btn-success"  onClick={() => setShowFolderModal(true)}>+</button>
+            <button className="btn btn-warning"  onClick={() => setShowFolderModal(true)}>
+              <i className="fa fa-pencil" aria-hidden="true"></i>
+            </button>
 
             <Modal
               show={showFolderModal}
-              header={'New Folder'}
-              body={<FolderForm
-                saveFolder={saveFolder}
-                account={defaultAccount}
-                setShowFolderModal={setShowFolderModal}
-              />}
+              header={'Manage folder structure'}
+              body={<FolderManager account={defaultAccount}/>}
               actions={<button className="btn btn-success" onClick={() => setShowFolderModal(false)}>Close</button>}
               onHide={() => setShowFolderModal(false)}
             />

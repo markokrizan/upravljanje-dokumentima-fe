@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import Side from './Side';
+import FolderManager from './FolderManager';
 
 import { getFolders, saveFolder  } from '../../store/actions/FolderActions';
 
@@ -14,7 +14,8 @@ const mapStateToProps = state => {
 };
   
 const mapDispatchToProps = {
-    getFolders
+    getFolders,
+    saveFolder
 };
 
 const withConnect = connect(
@@ -22,4 +23,4 @@ const withConnect = connect(
   mapDispatchToProps
 )
 
-export default compose(withConnect)(Side);
+export default compose(withConnect)(FolderManager);
