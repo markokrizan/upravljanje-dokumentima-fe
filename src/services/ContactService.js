@@ -13,10 +13,7 @@ class ContactService extends ApiService {
     let formData = new FormData();
     
     if (data.photo) {
-      const uri = data.photo.uri;
-      const name = uri.split('/').pop();
-      const type = 'image/jpeg';
-      formData.append('photo', { uri, name, type });
+      formData.append('photo', data.photo);
     }
 
     if(data.id){
@@ -31,7 +28,6 @@ class ContactService extends ApiService {
      
     return this.apiClient.post(ENDPOINTS.CONTACTS, formData);
   }
-
 }
 
 export const contactService = new ContactService();

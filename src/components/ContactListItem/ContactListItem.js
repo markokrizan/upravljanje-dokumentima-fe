@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import SingleContact from '../../components/SingleContact';
 import Modal from '../../components/Modal';
 
+import './ContactListItem.css';
+
+import { getFirstContactPhoto } from '../../util/helpers';
+
 export default function ContactListItem ({
     contact, 
     saveContact, 
@@ -17,7 +21,10 @@ export default function ContactListItem ({
        <li 
             className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
             >
-            <span>{contact.displayName}</span>
+            <span>
+                {getFirstContactPhoto(contact) && <img src={getFirstContactPhoto(contact)} className="contact-list-image"></img>}
+                {contact.displayName}
+            </span>
             <span>
                 <button className="btn btn-warning" onClick={() => setModalShow(true)}>
                     <i className="fa fa-pencil" aria-hidden="true"></i>

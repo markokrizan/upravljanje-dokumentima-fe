@@ -14,6 +14,7 @@ export default function Contacts({ getMyContacts, saveContact, contacts }){
 
     const renderContacts = () => contacts.length && contacts.map(contact => {
       return (<ContactListItem 
+          key={contact.id}
           contact={contact} 
           saveContact={saveContact}
           deleteContact={() => console.log('delete')}

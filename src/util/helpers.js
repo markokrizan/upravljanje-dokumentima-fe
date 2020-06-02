@@ -1,3 +1,5 @@
+import config from '../config';
+
 export const saveStateList = (state, stateKey, newEntity) => {
     let changed = 0;
   
@@ -29,4 +31,12 @@ export const getDefaultUserAccount = accounts => {
   }
 
   return accounts.filter(account => account.isActive)[0];
+}
+
+export const getFirstContactPhoto = contact => {
+  if(!contact || !contact.photos || !contact.photos[0]) {
+    return null;
+  }
+
+  return `${config.API_BASE_URL}/${contact.photos[0].path}`;
 }
