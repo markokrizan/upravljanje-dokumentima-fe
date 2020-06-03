@@ -98,7 +98,7 @@ export default function AccountForm({account, saveAccount, closeModal}){
                         {errors.displayName && <p>{errors.displayName}</p>}
                     </div>
                     <div className="col-md-12 d-flex justify-content-center mt-1">
-                        <Checkbox name="isActive" value={account.isActive}/>
+                        <Checkbox name="isActive" value={account && account.isActive}/>
                     </div> 
                     <div className="col-md-12 d-flex justify-content-center">
                         {errors.isActive && <p>{errors.isActive}</p>}

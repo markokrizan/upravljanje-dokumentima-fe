@@ -1,9 +1,10 @@
 import { 
     SET_MY_CONTACTS,
-    SET_SAVED_CONTACT
+    SET_SAVED_CONTACT,
+    SET_DELETED_CONTACT
 } from '../actions/ContactActionTypes';
   
-import { saveStateList } from '../../util/helpers';
+import { saveStateList, removeFromStateList } from '../../util/helpers';
   
 const initialState = {
     myContacts: []
@@ -15,6 +16,8 @@ const contactReducer = (state = initialState, action) => {
             return { ...state, myContacts: action.payload};
         case SET_SAVED_CONTACT:
             return saveStateList(state, 'myContacts', action.payload);
+        case SET_DELETED_CONTACT:
+            return removeFromStateList(state, 'myContacts', action.payload);
         default:
             return state;
     }

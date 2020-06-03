@@ -33,10 +33,18 @@ export const getDefaultUserAccount = accounts => {
   return accounts.filter(account => account.isActive)[0];
 }
 
-export const getFirstContactPhoto = contact => {
-  if(!contact || !contact.photos || !contact.photos[0]) {
+export const getLastContactPhoto = contact => {
+  if(!contact || !contact.photos || !contact.photos.length) {
     return null;
   }
 
-  return `${config.API_BASE_URL}/${contact.photos[0].path}`;
+  return `${config.API_BASE_URL}/${contact.photos[contact.photos.length - 1].path}`;
+}
+
+export const getAllContactPhotos = contact => {
+  if(!contact || !contact.photos || !contact.photos.length) {
+    return null;
+  }
+
+  return contact.photos.map(photo => `${config.API_BASE_URL}/${photo.path}`);
 }

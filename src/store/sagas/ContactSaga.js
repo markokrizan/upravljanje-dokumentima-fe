@@ -1,11 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { 
   GET_MY_CONTACTS,
-  SAVE_CONTACT
+  SAVE_CONTACT,
+  DELETE_CONTACT
 } from '../actions/ContactActionTypes';
 import { 
   setMyContacts,
-  setSavedContact
+  setSavedContact,
+  setDeletedContact
 } from '../actions/ContactActions';
 import { contactService } from '../../services/ContactService';
 import { VALIDATION_FAILED } from '../../util/httpStatusCodes';
@@ -21,7 +23,7 @@ export function* myContactsGet() {
   }
 }
 
-export function* contactSave({payload, meta: {setErrors}}) {
+export function* contactSave({ payload, meta: {setErrors} }) {
   try {
     const { data } = yield call(contactService.saveContact, payload);
     yield put(setSavedContact(data));
@@ -34,8 +36,18 @@ export function* contactSave({payload, meta: {setErrors}}) {
   }
 }
 
+export function* contactDelete({ payload }) {
+  try {
+    yield call(contactService.deleteContact, payload);
+    yield put(setDeletedContact(payload));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default function* AccountSaga() {
   yield takeLatest(GET_MY_CONTACTS, myContactsGet);
   yield takeLatest(SAVE_CONTACT, contactSave);
+  yield takeLatest(DELETE_CONTACT, contactDelete);
 }
  

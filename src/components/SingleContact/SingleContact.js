@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ContactForm from '../ContactForm';
 import './SingleContact.css';
 
-import { getFirstContactPhoto } from '../../util/helpers';
+import { getLastContactPhoto } from '../../util/helpers';
 
 const DEFAULT_PLACEHODER = 'https://static.pingendo.com/img-placeholder-1.svg';
 
@@ -26,7 +26,7 @@ export default function SingleContact({
   return(
     <div className="card-body">
       <div className="col-md-12 d-flex upload-container">
-        <img className="d-block" src={source || getFirstContactPhoto(contact) || DEFAULT_PLACEHODER} width="150" height="150"/>
+        <img className="d-block" src={source || getLastContactPhoto(contact) || DEFAULT_PLACEHODER} width="150" height="150"/>
         <input 
         type="file" 
         className="form-control-file file-input"

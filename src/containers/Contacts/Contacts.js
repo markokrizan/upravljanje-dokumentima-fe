@@ -5,7 +5,7 @@ import './Contacts.css';
 import SingleContact from '../../components/SingleContact';
 import ContactListItem from '../../components/ContactListItem';
 
-export default function Contacts({ getMyContacts, saveContact, contacts }){
+export default function Contacts({ getMyContacts, saveContact, deleteContact, contacts }){
     const [modalShow, setModalShow] = useState(false);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function Contacts({ getMyContacts, saveContact, contacts }){
           key={contact.id}
           contact={contact} 
           saveContact={saveContact}
-          deleteContact={() => console.log('delete')}
+          deleteContact={deleteContact}
       />)
     });
 

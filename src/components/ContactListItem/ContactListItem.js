@@ -4,7 +4,7 @@ import Modal from '../../components/Modal';
 
 import './ContactListItem.css';
 
-import { getFirstContactPhoto } from '../../util/helpers';
+import { getLastContactPhoto } from '../../util/helpers';
 
 export default function ContactListItem ({
     contact, 
@@ -22,7 +22,7 @@ export default function ContactListItem ({
             className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
             >
             <span>
-                {getFirstContactPhoto(contact) && <img src={getFirstContactPhoto(contact)} className="contact-list-image"></img>}
+                {getLastContactPhoto(contact) && <img src={getLastContactPhoto(contact)} className="contact-list-image"></img>}
                 {contact.displayName}
             </span>
             <span>

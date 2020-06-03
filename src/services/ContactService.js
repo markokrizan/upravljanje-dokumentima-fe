@@ -1,7 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  CONTACTS: '/api/contacts'
+  CONTACTS: '/api/contacts',
+  CONTACT: contactId => `/api/contacts/${contactId}`
 };
 
 class ContactService extends ApiService {
@@ -28,6 +29,8 @@ class ContactService extends ApiService {
      
     return this.apiClient.post(ENDPOINTS.CONTACTS, formData);
   }
+
+  deleteContact = data => this.apiClient.delete(ENDPOINTS.CONTACT(data));
 }
 
 export const contactService = new ContactService();
