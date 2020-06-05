@@ -17,7 +17,8 @@ const folderReducer = (state = initialState, action) => {
         case SET_SAVED_FOLDER:
             return saveStateList(state, 'folders', action.payload);
         case SET_DELETED_FOLDER:
-            return removeFromStateList(state, 'folders', action.payload);
+            const { folderId } = action.payload;
+            return removeFromStateList(state, 'folders', folderId);
         default:
             return state;
     }

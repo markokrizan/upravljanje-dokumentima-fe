@@ -1,11 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { 
   GET_FOLDERS,
-  SAVE_FOLDER
+  SAVE_FOLDER,
+  DELETE_FOLDER
 } from '../actions/FolderActionsTypes';
 import { 
   setFolders,
-  setSavedFolder
+  setDeletedFolder
 } from '../actions/FolderActions';
 import { folderService } from '../../services/FolderService';
 import { VALIDATION_FAILED } from '../../util/httpStatusCodes';
@@ -23,7 +24,7 @@ export function* foldersGet({ payload }) {
 export function* folderSave({payload, meta: {setErrors}}) {
   try {
     const { data } = yield call(folderService.saveFolder, payload);
-    yield put(setSavedFolder(data));
+    yield put(setFolders(data));
   } catch (error) {
     if (error.response.status === VALIDATION_FAILED) {
       yield call(setErrors, parseApiErrorsToFormik(error.response.data.errors));
@@ -33,8 +34,18 @@ export function* folderSave({payload, meta: {setErrors}}) {
   }
 }
 
+export function* folderDelete({ payload }) {
+  try {
+    yield call(folderService.deleteFolder, payload);
+    yield put(setDeletedFolder(payload));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default function* FolderSaga() {
   yield takeLatest(GET_FOLDERS, foldersGet);
   yield takeLatest(SAVE_FOLDER, folderSave);
+  yield takeLatest(DELETE_FOLDER, folderDelete);
 }
  

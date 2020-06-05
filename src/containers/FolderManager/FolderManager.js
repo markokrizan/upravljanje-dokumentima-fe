@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import FolderList from '../../components/FolderList';
 import FolderForm from '../../components/FolderForm';
 
-const FolderManager = ({ account, folders, saveFolder }) => {
+const FolderManager = ({ account, folders, saveFolder, deleteFolder }) => {
     const [selectedFolder, setSelectedFolder] = useState(null);
 
     return (
@@ -13,15 +13,18 @@ const FolderManager = ({ account, folders, saveFolder }) => {
                 folders={folders} 
                 editingEnabled={true}
                 setSelectedFolder={setSelectedFolder}
+                deleteFolder={deleteFolder}
+                account={account}
             />
 
             <br/>
 
-            <p>Add new folder:</p>
+            <p>Add or edit folder:</p>
             <FolderForm 
                 saveFolder={saveFolder} 
                 account={account} 
                 folder={selectedFolder}
+                folders={folders}
             />
         </>
     );

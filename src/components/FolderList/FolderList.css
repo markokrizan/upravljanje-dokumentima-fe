@@ -1,0 +1,7 @@
+.align-right {
+    align-self: flex-end;
+}
+
+.text-overflow-elipsis {
+    text-overflow: ellipsis;
+}

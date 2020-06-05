@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import './FolderForm.css';
 
-export default function FolderForm ({ saveFolder, account, setShowFolderModal, folder }){
+export default function FolderForm ({ saveFolder, account, setShowFolderModal, folder, folders }){
+    const [ selectedParentFolder, setSelectedParentFolder ] = useState(null);
+
     const initialValues = {
         name : '',
         ...folder
@@ -15,9 +17,40 @@ export default function FolderForm ({ saveFolder, account, setShowFolderModal, f
     });
     
     const handleSubmit = (values, { setErrors, setSubmitting }) => {
-        saveFolder({ values, account }, setErrors);
+        const data = { ...values, parentFolderId: selectedParentFolder }
+
+        saveFolder({ data, account }, setErrors);
         setSubmitting(false);
         setShowFolderModal && setShowFolderModal(false);
+    }
+
+    const renderParentOptions = () => {
+        if (!folder) {
+            return (
+                <>
+                    <option value={null}>No parent</option>
+                    {folders.map(currentFolder => {
+                        return <option key={currentFolder.id} value={currentFolder.id}>{currentFolder.name}</option>
+                    })}
+                </>
+            );
+        }
+
+        return (
+            <>
+                <option value={null}>No parent</option>
+                {folders.filter(currentFolder => currentFolder.id !== folder.id).map(currentFolder => {
+                    return (
+                        <option 
+                            key={currentFolder.id}
+                            value={currentFolder.id}
+                        >
+                            {currentFolder.name}
+                        </option>
+                    );
+                })}
+            </>
+        );
     }
 
     return (
@@ -29,8 +62,7 @@ export default function FolderForm ({ saveFolder, account, setShowFolderModal, f
         >
         {({
         isSubmitting,
-        errors,
-        touched //use if needed
+        errors
         }) =>
             (<Form className="text-center">
                 <div className="row">
@@ -39,6 +71,13 @@ export default function FolderForm ({ saveFolder, account, setShowFolderModal, f
                   </div>
                   <div className="col-md-12 d-flex justify-content-center">
                       {errors.name && <p>{errors.name}</p>}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                      <select name="parentFolderId" className="form-control w-50" onChange={e => setSelectedParentFolder(e.target.value)}>
+                        {renderParentOptions()}
+                      </select>
                   </div>
                 </div>
                 <div className="row">  

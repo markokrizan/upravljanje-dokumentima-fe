@@ -3,7 +3,7 @@ import { compose } from 'redux';
 
 import FolderManager from './FolderManager';
 
-import { getFolders, saveFolder  } from '../../store/actions/FolderActions';
+import { getFolders, saveFolder, deleteFolder  } from '../../store/actions/FolderActions';
 
 const mapStateToProps = state => {
     return {
@@ -15,7 +15,8 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = {
     getFolders,
-    saveFolder
+    saveFolder,
+    deleteFolder
 };
 
 const withConnect = connect(
