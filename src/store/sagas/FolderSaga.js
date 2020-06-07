@@ -36,8 +36,8 @@ export function* folderSave({payload, meta: {setErrors}}) {
 
 export function* folderDelete({ payload }) {
   try {
-    yield call(folderService.deleteFolder, payload);
-    yield put(setDeletedFolder(payload));
+    const { data } = yield call(folderService.deleteFolder, payload);
+    yield put(setFolders(data));
   } catch (error) {
     console.error(error);
   }
