@@ -13,7 +13,7 @@ export default function Header({logOut, loggedInUser}){
                 <div className="container-fluid">
                     <Link to='/' className="navbar-brand">
                         <i className="fa fa-envelope-o fa-2x"></i>
-                        <h2>FTN Mail Client</h2>
+                        <h2>Universal mail client</h2>
                     </Link>
                     {loggedInUser && <Dropdown alignRight>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">

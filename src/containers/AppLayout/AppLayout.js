@@ -19,10 +19,10 @@ export default function AppLayout({logOut, isLoggedIn, loggedInUser, getMe}) {
       <Router>
         <Fragment>
         <Header logOut = {logOut} loggedInUser = {loggedInUser}/>
-        {!loggedInUser && <div className="public-area">
+        {!isLoggedIn && <div className="public-area">
           <PublicRoutes/>
         </div>}
-        {loggedInUser && <div className="row main-app-area">
+        {isLoggedIn && <div className="row main-app-area">
           <aside className="col-md-2">
             <Side/>
           </aside>

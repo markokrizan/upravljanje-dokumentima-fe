@@ -16,7 +16,7 @@ export default function Side({ folders, defaultAccount, loggedInUser, getFolders
 
     return (
       <div className="text-center">
-        {folders.length ? <FolderList folders={folders}/> : <p>No folders yet!</p>}
+        {folders.length ? <FolderList folders={folders}/> : <p className="p-2">No folders yet!</p>}
         {defaultAccount ? <div className='d-flex align-items-center flex-column mt-1'>
           <ButtonToolbar >
             <button className="btn btn-warning"  onClick={() => setShowFolderModal(true)}>
@@ -31,7 +31,7 @@ export default function Side({ folders, defaultAccount, loggedInUser, getFolders
               onHide={() => setShowFolderModal(false)}
             />
           </ButtonToolbar>
-        </div> : <p>Create or set a default email account to add new folders!</p>}
+        </div> : <p className="p-2">Create or set a default email account to add new folders!</p>}
       </div>
     );
 }
