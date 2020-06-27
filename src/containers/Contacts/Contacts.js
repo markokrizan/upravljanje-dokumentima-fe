@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ButtonToolbar } from 'react-bootstrap';
+import { debounce } from 'lodash';
+
 import Modal from '../../components/Modal';
 import './Contacts.css';
 import SingleContact from '../../components/SingleContact';
@@ -11,6 +13,8 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
     useEffect(() => {
       getMyContacts();
     }, [])
+
+    const searchContacts = debounce(query => getMyContacts(query), 500);
 
     const renderContacts = () => contacts.length && contacts.map(contact => {
       return (<ContactListItem 
@@ -27,8 +31,13 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
           <div className="col-md-12">
             <div className="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
               <div className="input-group w-50">
-                <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Search"/>
-                <div className="input-group-append"><button className="btn btn-success" type="button"><i className="fa fa-search"></i></button></div>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  id="inlineFormInputGroup" 
+                  placeholder="Search"
+                  onChange={e => searchContacts({ query: e.target.value })}
+                />
               </div>
               <ButtonToolbar>
                 <button className="btn btn-success"  onClick={() => setModalShow(true)}>+</button>

@@ -7,9 +7,10 @@ import {
     SET_DELETED_CONTACT
 } from './ContactActionTypes';
 
-export const getMyContacts = () => {
+export const getMyContacts = payload => {
     return {
         type: GET_MY_CONTACTS,
+        payload
     }
 }
   

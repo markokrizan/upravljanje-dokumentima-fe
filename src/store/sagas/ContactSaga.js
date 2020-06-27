@@ -14,9 +14,9 @@ import { VALIDATION_FAILED } from '../../util/httpStatusCodes';
 import parseApiErrorsToFormik from '../../util/parseApiErrorsToFormik';
 
 
-export function* myContactsGet() {
+export function* myContactsGet({ payload }) {
   try {
-    const { data } = yield call(contactService.getMyContacts);
+    const { data } = yield call(contactService.getMyContacts, payload);
     yield put(setMyContacts(data));
   } catch (error) {
     console.error(error);

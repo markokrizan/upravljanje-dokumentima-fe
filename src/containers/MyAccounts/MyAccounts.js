@@ -16,7 +16,7 @@ export default function MyAccounts({
         getMyAccounts();
     }, []);
 
-    const renderAccounts = () => myAccounts.length && myAccounts.map(account => {
+    const renderAccounts = () => myAccounts && myAccounts.length && myAccounts.map(account => {
         return <AccountListItem 
             key={account.id}
             account={account} 

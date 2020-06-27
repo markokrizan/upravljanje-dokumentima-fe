@@ -6,8 +6,12 @@ const ENDPOINTS = {
 };
 
 class ContactService extends ApiService {
-  getMyContacts = () => {
-    return this.apiClient.get(ENDPOINTS.CONTACTS);
+  getMyContacts = data => {
+    return this.apiClient.get(ENDPOINTS.CONTACTS, {
+      params: {
+        query : data && data.query ? data.query : null
+      }
+    });
   };
 
   saveContact = data => {
