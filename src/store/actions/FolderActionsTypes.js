@@ -4,3 +4,4 @@ export const SAVE_FOLDER = 'SAVE_FOLDER';
 export const SET_SAVED_FOLDER = 'SET_SAVED_FOLDER';
 export const DELETE_FOLDER = 'DELETE_FOLDER';
 export const SET_DELETED_FOLDER = 'SET_DELETED_FOLDER';
+export const SYNC_FOLDER = 'SYNC_FOLDER';

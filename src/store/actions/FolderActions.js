@@ -4,7 +4,8 @@ import {
     SAVE_FOLDER,
     SET_SAVED_FOLDER,
     DELETE_FOLDER,
-    SET_DELETED_FOLDER
+    SET_DELETED_FOLDER,
+    SYNC_FOLDER
 } from './FolderActionsTypes';
 
 export const getFolders = payload => {
@@ -48,6 +49,13 @@ export const deleteFolder = payload => {
 export const setDeletedFolder = payload => {
     return {
         type: SET_DELETED_FOLDER,
+        payload
+    }
+}
+
+export const syncFolder = payload => {
+    return {
+        type: SYNC_FOLDER,
         payload
     }
 }

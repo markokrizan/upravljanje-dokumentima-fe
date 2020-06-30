@@ -16,7 +16,7 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
 
     const searchContacts = debounce(query => getMyContacts(query), 500);
 
-    const renderContacts = () => contacts.length && contacts.map(contact => {
+    const renderContacts = () => contacts && contacts.length && contacts.map(contact => {
       return (<ContactListItem 
           key={contact.id}
           contact={contact} 

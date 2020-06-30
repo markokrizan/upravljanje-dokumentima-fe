@@ -48,3 +48,7 @@ export const getAllContactPhotos = contact => {
 
   return contact.photos.map(photo => `${config.API_BASE_URL}/${photo.path}`);
 }
+
+export const findFolderByName = (folders, name) => {
+  return folders.filter(folder => folder.name === name)[0];
+}
