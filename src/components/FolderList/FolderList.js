@@ -8,6 +8,23 @@ const FolderList = ({ folders, editingEnabled, setSelectedFolder, deleteFolder, 
 
     const getNestWidthPercentage = level => `${100 / level}%`;
 
+    const folderIconClasses = {
+      closed: 'fa fa-folder',
+      open: 'fa fa-folder-open'
+    }
+
+    const renderFolderName = folder => {
+      const iconClass = folderIconClasses[folder.subFolders && folder.subFolders.length ? 'open' : 'closed'];
+
+      return (
+        <div className="row">
+          <div className="col-md-4"><i className={iconClass} aria-hidden="true"></i></div>
+          <div className="col-md-4"><span>{folder.name}</span></div>
+          <div className="col-md-4"></div>
+        </div>
+      )
+    }
+
     const renderFolderListItem = (folder, nestingLevel) => {
       return (
           <div 
@@ -23,7 +40,7 @@ const FolderList = ({ folders, editingEnabled, setSelectedFolder, deleteFolder, 
           >
             {editingEnabled ? (
               <div className="d-flex justify-content-between align-items-center">
-                <span>{folder.name}</span>
+                <span> {renderFolderName(folder)}</span>
                 <span>
                       <button className="btn btn-warning" onClick={() => setSelectedFolder(folder)}>
                           <i className="fa fa-pencil" aria-hidden="true"></i>
@@ -34,8 +51,8 @@ const FolderList = ({ folders, editingEnabled, setSelectedFolder, deleteFolder, 
                 </span>
               </div>
             ) : (
-              <Link key={folder.id} to={`/${folder.name}`} className={'text-overflow-elipsis'}>
-                {folder.name}
+              <Link key={folder.id} to={`/folder/${folder.name}`} className={'text-overflow-elipsis'}>
+                {renderFolderName(folder)}
               </Link>
             )}
           </div>

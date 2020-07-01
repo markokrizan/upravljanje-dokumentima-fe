@@ -30,7 +30,7 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
         <div className="row">
           <div className="col-md-12">
             <div className="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
-              <div className="input-group w-50">
+              <div className="input-group w-25">
                 <input 
                   type="text" 
                   className="form-control" 

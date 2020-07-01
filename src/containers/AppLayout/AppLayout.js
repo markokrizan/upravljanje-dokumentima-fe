@@ -16,21 +16,23 @@ export default function AppLayout({logOut, isLoggedIn, loggedInUser, getMe}) {
   }, [])
   
   return (
-      <Router>
-        <Fragment>
+      <Fragment>
         <Header logOut = {logOut} loggedInUser = {loggedInUser}/>
-        {!isLoggedIn && <div className="public-area">
-          <PublicRoutes/>
-        </div>}
-        {isLoggedIn && <div className="row main-app-area">
-          <aside className="col-md-2">
-            <Side/>
-          </aside>
-          <main className="col-md-10">
-            <ProtectedRoutes/>
-          </main>
-        </div>}
-        </Fragment>
-      </Router>
+        <Router>
+          <Fragment>
+          {!isLoggedIn && <div className="public-area">
+            <PublicRoutes/>
+          </div>}
+          {isLoggedIn && <div className="row main-app-area">
+            <aside className="col-md-2">
+              <Side/>
+            </aside>
+            <main className="col-md-10">
+              <ProtectedRoutes/>
+            </main>
+          </div>}
+          </Fragment>
+        </Router>
+      </Fragment>
   );
 }
