@@ -2,7 +2,8 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   FOLDERS: accountId => `/api/accounts/${accountId}/folders`,
-  FOLDER: (accountId, folderId) => `/api/accounts/${accountId}/folders/${folderId}`
+  FOLDER: (accountId, folderId) => `/api/accounts/${accountId}/folders/${folderId}`,
+  SYNC_FOLDER: (accountId, folderId) => `/api/accounts/${accountId}/folders/${folderId}/sync`
 };
 
 class FolderService extends ApiService {
@@ -16,6 +17,10 @@ class FolderService extends ApiService {
 
   deleteFolder = ({ accountId, folderId }) => {
     return this.apiClient.delete(ENDPOINTS.FOLDER(accountId, folderId));
+  }
+
+  syncFolder = ({ accountId, folderId }) => {
+    return this.apiClient.put(ENDPOINTS.SYNC_FOLDER(accountId, folderId));
   }
 }
 

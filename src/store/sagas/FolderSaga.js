@@ -2,15 +2,19 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { 
   GET_FOLDERS,
   SAVE_FOLDER,
-  DELETE_FOLDER
+  DELETE_FOLDER,
+  SYNC_FOLDER
 } from '../actions/FolderActionsTypes';
 import { 
   setFolders,
   setDeletedFolder
 } from '../actions/FolderActions';
+import { setMessages } from '../actions/MessageActions';
+import { setLoadingStatus } from '../actions/LoaderActions';
 import { folderService } from '../../services/FolderService';
 import { VALIDATION_FAILED } from '../../util/httpStatusCodes';
 import parseApiErrorsToFormik from '../../util/parseApiErrorsToFormik';
+import { BAD_REQUEST } from '../../util/httpStatusCodes';
 
 export function* foldersGet({ payload }) {
   try {
@@ -43,9 +47,28 @@ export function* folderDelete({ payload }) {
   }
 }
 
+export function* folderSync({ payload }) {
+  try {
+    yield put(setLoadingStatus(true));
+
+    const { data } = yield call(folderService.syncFolder, payload);
+    yield put(setMessages(data));
+
+    yield put(setLoadingStatus(false));
+  } catch (error) {
+    if (error && error.status === BAD_REQUEST) {
+      alert(error.status);
+    }
+    console.error(error);
+
+    yield put(setLoadingStatus(false));
+  }
+}
+
 export default function* FolderSaga() {
   yield takeLatest(GET_FOLDERS, foldersGet);
   yield takeLatest(SAVE_FOLDER, folderSave);
   yield takeLatest(DELETE_FOLDER, folderDelete);
+  yield takeLatest(SYNC_FOLDER, folderSync);
 }
  

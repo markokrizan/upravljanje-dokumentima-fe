@@ -1,18 +1,29 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect, useState }  from 'react';
 
 import { useParams} from "react-router";
 import { debounce, isEmpty } from 'lodash';
 
 import MessageList from '../../components/MessageList';
+import Loader from '../../components/Loader';
 
 import { findFolderByName } from '../../util/helpers';
 
-export default function Folder({ defaultAccount, folders, syncFolder, getMessages, messages }){
+export default function Folder({ 
+    defaultAccount, 
+    folders, 
+    syncFolder, 
+    getMessages, 
+    messages,
+    isLoading
+}){
     const params = useParams();
+    const [folder, setFolder] = useState(null);
+
+    const getRefreshIcon = () => {
+        return folder && folder.isSynced ? 'fa fa-check' : 'fa fa-refresh';
+    }
 
     const handleGetMessages = query => {
-        const folder = findFolderByName(folders, params['folderName']);
-
         !isEmpty(folder) && getMessages({
             accountId: defaultAccount.id,
             folderId: folder.id,
@@ -20,19 +31,24 @@ export default function Folder({ defaultAccount, folders, syncFolder, getMessage
         })
     }
 
+    const handleSyncFolder = () => {
+        syncFolder({
+            accountId: defaultAccount.id,
+            folderId: folder.id
+        })
+    }
+
     const searchMessages = debounce(query => handleGetMessages(query), 500);
 
     useEffect(() => {
-        if(folders && folders.length) {
-            handleGetMessages(null);
-        }
-    }, [folders]);
+        setFolder(findFolderByName(folders, params['folderName']));
+    }, [params, folders])
 
     useEffect(() => {
-        if(folders && folders.length) {
+        if(folder) {
             handleGetMessages(null);
         }
-    }, [params]);
+    }, [folder]);
 
     return (
         <>
@@ -47,7 +63,13 @@ export default function Folder({ defaultAccount, folders, syncFolder, getMessage
                             onChange={e => searchMessages(e.target.value ? e.target.value : null)}
                         />
                     </div>
-                    <button className="btn btn-success"><i className="fa fa-refresh"></i></button>
+                    <button 
+                        className="btn btn-success" 
+                        disabled={(folder && folder.isSynced) || isLoading}
+                        onClick={handleSyncFolder}
+                    >
+                        <i className={getRefreshIcon()}></i>
+                    </button>
                 </div>
             </div>
             <MessageList messages={messages}/>

@@ -10,7 +10,8 @@ const mapStateToProps = state => {
     return {
       defaultAccount: state.account.defaultAccount,
       folders: state.folder.folders,
-      messages: state.message.messages
+      messages: state.message.messages,
+      isLoading: state.loader.isLoading
     };
 };
   
