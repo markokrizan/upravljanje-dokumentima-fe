@@ -52,3 +52,11 @@ export const getAllContactPhotos = contact => {
 export const findFolderByName = (folders, name) => {
   return folders.filter(folder => folder.name === name)[0];
 }
+
+export const parseApiError = error => {
+  if (!error || !error.response || !error.response.data) {
+    return null;
+  }
+
+  return error.response.data;
+}

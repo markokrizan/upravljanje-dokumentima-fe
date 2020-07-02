@@ -15,6 +15,7 @@ import { folderService } from '../../services/FolderService';
 import { VALIDATION_FAILED } from '../../util/httpStatusCodes';
 import parseApiErrorsToFormik from '../../util/parseApiErrorsToFormik';
 import { BAD_REQUEST } from '../../util/httpStatusCodes';
+import { parseApiError } from '../../util/helpers';
 
 export function* foldersGet({ payload }) {
   try {
@@ -56,10 +57,11 @@ export function* folderSync({ payload }) {
 
     yield put(setLoadingStatus(false));
   } catch (error) {
-    if (error && error.status === BAD_REQUEST) {
-      alert(error.status);
+    const errorData = parseApiError(error);
+    if (errorData && errorData.status === BAD_REQUEST) {
+      alert(errorData.message);
+      console.error(errorData.message);
     }
-    console.error(error);
 
     yield put(setLoadingStatus(false));
   }
