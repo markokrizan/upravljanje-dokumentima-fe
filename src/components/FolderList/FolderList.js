@@ -39,7 +39,7 @@ const FolderList = ({ folders, editingEnabled, setSelectedFolder, deleteFolder, 
             onClick={() => history.push(folder.name) }
           >
             {editingEnabled ? (
-              <div className="d-flex justify-content-between align-items-center">
+              <div className="d-flex justify-content-between align-items-center" key={folder.id}>
                 <span> {renderFolderName(folder)}</span>
                 <span>
                       <button className="btn btn-warning" onClick={() => setSelectedFolder(folder)}>

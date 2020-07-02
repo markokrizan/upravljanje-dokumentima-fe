@@ -43,6 +43,7 @@ export default function ContactListItem ({
                         closeModal={closeModal}
                     />}
                 actions={<button className="btn btn-success" onClick={closeModal}>Close</button>}
+                onHide={closeModal}
             />
         </li> 
     );

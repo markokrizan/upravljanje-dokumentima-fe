@@ -35,6 +35,7 @@ export default function MessageList({ messages }) {
                 <ul className="list-group w-100 h-100">
                     {messages.messages.map(message => (
                         <div 
+                            key={message.id}
                             onClick={() => showMessage(message)}
                             className="
                                 list-group-item 
@@ -53,6 +54,7 @@ export default function MessageList({ messages }) {
                     body={
                         <Message message={currentMessage} />}
                     actions={<button className="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
+                    onHide={() => setModalShow(false)}
                 />
             </>) : (
                 <div>No messages!</div>

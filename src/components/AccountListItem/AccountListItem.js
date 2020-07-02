@@ -44,6 +44,7 @@ export default function AccountListItem ({
                         closeModal={closeModal}
                     />}
                 actions={<button className="btn btn-success" onClick={closeModal}>Close</button>}
+                onHide={closeModal}
             />
         </li>
     );
