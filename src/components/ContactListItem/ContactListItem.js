@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
+
 import SingleContact from '../../components/SingleContact';
 import Modal from '../../components/Modal';
 
 import './ContactListItem.css';
 
-import { getLastContactPhoto } from '../../util/helpers';
+import { getLastContactPhoto, parseSearchResultField } from '../../util/helpers';
 
 export default function ContactListItem ({
     contact, 
@@ -17,13 +19,27 @@ export default function ContactListItem ({
         setModalShow(false);
     }
 
+    const renderTitle = contact => {
+        if (isEmpty(contact)) {
+            return '';
+        }
+
+        const firstName = parseSearchResultField(contact, 'firstName');
+        const lastName = parseSearchResultField(contact, 'lastName');
+        const email = parseSearchResultField(contact, 'email');
+
+        const title =  `${firstName} ${lastName} - ${email}`
+
+        return <span dangerouslySetInnerHTML={{__html: title}} />
+    }
+
     return(
        <li 
             className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
             >
             <span>
-                {getLastContactPhoto(contact) && <img src={getLastContactPhoto(contact)} className="contact-list-image"></img>}
-                <span>{`${contact.firstName} ${contact.lastName} - ${contact.email}`}</span>
+                {getLastContactPhoto(contact.model) && <img src={getLastContactPhoto(contact.model)} className="contact-list-image"></img>}
+                {renderTitle(contact)}
             </span>
             <span>
                 <button className="btn btn-warning" onClick={() => setModalShow(true)}>
@@ -38,7 +54,7 @@ export default function ContactListItem ({
                 header={'Contact'}
                 body={
                     <SingleContact 
-                        contact={contact} 
+                        contact={contact.model ? contact.model : contact} 
                         saveContact={saveContact}
                         closeModal={closeModal}
                     />}

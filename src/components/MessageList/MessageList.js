@@ -3,6 +3,7 @@ import { isEmpty } from 'lodash';
 
 import Modal from '../Modal'
 import Message from '../Message';
+import { parseSearchResultField } from '../../util/helpers';
 
 export default function MessageList({ messages }) {
     const [modalShow, setModalShow] = useState(false);
@@ -14,12 +15,15 @@ export default function MessageList({ messages }) {
         }
 
         const isRead = !message.isRead ? '(New)' : '';
-        const title =  message.from && message.subject && `${message.from} - ${message.subject}` || '(No subject)';
+        const messageFrom = parseSearchResultField(message, 'from');
+        const messageSubject = parseSearchResultField(message, 'subject');
+
+        const title =  `${messageFrom} - ${messageSubject}` || '(No subject)';
 
         return (
             <p>
                 <strong>{isRead}</strong>&nbsp;
-                <span>{title}</span>
+                <span dangerouslySetInnerHTML={{__html: title}} />
             </p>
         );
     }
@@ -30,10 +34,10 @@ export default function MessageList({ messages }) {
     }
 
     const renderMessageItems = () => {
-        return messages && messages.messages && messages.messages.length ? (
+        return messages && messages.length ? (
             <>
                 <ul className="list-group w-100 h-100">
-                    {messages.messages.map(message => (
+                    {messages.map(message => (
                         <div 
                             key={message.id}
                             onClick={() => showMessage(message)}
@@ -52,7 +56,7 @@ export default function MessageList({ messages }) {
                     show={modalShow}
                     header={'Message'}
                     body={
-                        <Message message={currentMessage} />}
+                        <Message message={currentMessage && currentMessage.model} />}
                     actions={<button className="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
                     onHide={() => setModalShow(false)}
                 />

@@ -1,17 +1,20 @@
 import config from '../config';
+import { isEmpty } from 'lodash';
 
 export const saveStateList = (state, stateKey, newEntity) => {
     let changed = 0;
   
     const updatedState = { ...state, [stateKey]: state[stateKey].map((item => {
-      if (item.id == newEntity.id){
+      const itemId = item.id || item.model.id;
+
+      if (itemId == newEntity.id){
         changed++;
         return newEntity;
       }
   
       return item;
     }))};
-  
+
     if(!changed){
       return {...state, [stateKey]: [...state[stateKey], newEntity]};
     }
@@ -59,4 +62,21 @@ export const parseApiError = error => {
   }
 
   return error.response.data;
+}
+
+export const parseSearchResultField = (searchResult, fieldName) => {
+  if(isEmpty(searchResult)) {
+    return null;
+  }
+
+  //Is direct model not search result object
+  if(!isEmpty(searchResult) && !searchResult.highlightedFields) {
+    return searchResult[fieldName];
+  }
+
+  if(!isEmpty(searchResult.highlightedFields) && searchResult.highlightedFields[fieldName]) {
+    return searchResult.highlightedFields[fieldName];
+  }
+
+  return searchResult.model[fieldName];
 }
