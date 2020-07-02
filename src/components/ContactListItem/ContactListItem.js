@@ -23,7 +23,7 @@ export default function ContactListItem ({
             >
             <span>
                 {getLastContactPhoto(contact) && <img src={getLastContactPhoto(contact)} className="contact-list-image"></img>}
-                {contact.displayName}
+                <span>{`${contact.firstName} ${contact.lastName} - ${contact.email}`}</span>
             </span>
             <span>
                 <button className="btn btn-warning" onClick={() => setModalShow(true)}>
