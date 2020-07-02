@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
+
 import Modal from '../Modal'
 import Message from '../Message';
 
@@ -7,7 +9,19 @@ export default function MessageList({ messages }) {
     const [currentMessage, setCurrentMessage] = useState(null);
 
     const renderTitle = message => {
-        return message.from && message.subject && `${message.from} - ${message.subject}` || '(No subject)';
+        if (isEmpty(message)) {
+            return '';
+        }
+
+        const isRead = !message.isRead ? '(New)' : '';
+        const title =  message.from && message.subject && `${message.from} - ${message.subject}` || '(No subject)';
+
+        return (
+            <p>
+                <strong>{isRead}</strong>&nbsp;
+                <span>{title}</span>
+            </p>
+        );
     }
 
     const showMessage = message => {
