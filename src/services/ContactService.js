@@ -9,7 +9,8 @@ class ContactService extends ApiService {
   getMyContacts = data => {
     return this.apiClient.get(ENDPOINTS.CONTACTS, {
       params: {
-        query : data && data.query ? data.query : null
+        query : data && data.query ? data.query : null,
+        page : data && data.page ? data.page : null
       }
     });
   };

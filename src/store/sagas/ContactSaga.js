@@ -25,8 +25,11 @@ export function* myContactsGet({ payload }) {
 
 export function* contactSave({ payload, meta: {setErrors} }) {
   try {
-    const { data } = yield call(contactService.saveContact, payload);
-    yield put(setSavedContact(data));
+    yield call(contactService.saveContact, payload);
+
+    //Pull contacts again to compensate for paging - not optimized but less trouble
+    const { data } = yield call(contactService.getMyContacts, payload);
+    yield put(setMyContacts(data));
   } catch (error) {
     if (error.response.status === VALIDATION_FAILED) {
       yield call(setErrors, parseApiErrorsToFormik(error.response.data.errors));

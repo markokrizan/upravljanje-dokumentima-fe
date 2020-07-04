@@ -3,9 +3,10 @@ import { isEmpty } from 'lodash';
 
 import Modal from '../Modal'
 import Message from '../Message';
+import Pagination from '../../components/Pagination';
 import { parseSearchResultField } from '../../util/helpers';
 
-export default function MessageList({ messages }) {
+export default function MessageList({ messages, currentPage, setCurrentPage }) {
     const [modalShow, setModalShow] = useState(false);
     const [currentMessage, setCurrentMessage] = useState(null);
 
@@ -34,13 +35,13 @@ export default function MessageList({ messages }) {
     }
 
     const renderMessageItems = () => {
-        return messages && messages.length ? (
+        return messages && messages.content && messages.content.length ? (
             <>
-                <ul className="list-group w-100 h-100">
-                    {messages.map(message => (
+                <ul className="list-group w-100">
+                    {messages.content.map(message => (
                         <div 
-                            key={message.id}
-                            onClick={() => showMessage(message)}
+                            key={message.model && message.model.id}
+                            onClick={() => showMessage(message.model)}
                             className="
                                 list-group-item 
                                 list-group-item-action 
@@ -52,11 +53,18 @@ export default function MessageList({ messages }) {
                         </div>
                     ))}
                 </ul>
+                <Pagination 
+                    prevPage={() => setCurrentPage(currentPage - 1)}
+                    nextPage={() => setCurrentPage(currentPage + 1)}
+                    currentPage={currentPage}
+                    totalPages={messages.totalPages}
+                />
+
                 <Modal
                     show={modalShow}
                     header={'Message'}
                     body={
-                        <Message message={currentMessage && currentMessage.model} />}
+                        <Message message={currentMessage} />}
                     actions={<button className="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
                     onHide={() => setModalShow(false)}
                 />

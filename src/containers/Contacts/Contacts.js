@@ -3,20 +3,42 @@ import { ButtonToolbar } from 'react-bootstrap';
 import { debounce } from 'lodash';
 
 import Modal from '../../components/Modal';
+import Pagination from '../../components/Pagination';
 import './Contacts.css';
 import SingleContact from '../../components/SingleContact';
 import ContactListItem from '../../components/ContactListItem';
 
 export default function Contacts({ getMyContacts, saveContact, deleteContact, contacts }){
     const [modalShow, setModalShow] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [query, setQuery] = useState(null);
 
     useEffect(() => {
       getMyContacts();
     }, [])
 
-    const searchContacts = debounce(query => getMyContacts(query), 500);
+    const handleGetContacts = passedPage => {
+      const page = passedPage || passedPage === 0 ? passedPage : currentPage;
 
-    const renderContacts = () => contacts && contacts.length && contacts.map(contact => {
+      getMyContacts({
+        query,
+        page
+      });
+    }
+
+    const searchContacts = debounce(query => {
+      setQuery(query);
+    }, 500);
+
+    useEffect(() => {
+      handleGetContacts(null);
+    }, [currentPage]);
+
+    useEffect(() => {
+      handleGetContacts(0);
+    }, [query]);
+
+    const renderContacts = () => contacts && contacts.content && contacts.content.map(contact => {
       return (<ContactListItem 
           key={contact.id}
           contact={contact} 
@@ -36,7 +58,7 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
                   className="form-control" 
                   id="inlineFormInputGroup" 
                   placeholder="Search"
-                  onChange={e => searchContacts({ query: e.target.value })}
+                  onChange={e => searchContacts(e.target.value ? e.target.value : null)}
                 />
               </div>
               <ButtonToolbar>
@@ -58,6 +80,12 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
               <ul className="list-group w-100 h-100">
                 {renderContacts() || <p>No contacts yet</p>}
               </ul>
+              <Pagination 
+                    prevPage={() => setCurrentPage(currentPage - 1)}
+                    nextPage={() => setCurrentPage(currentPage + 1)}
+                    currentPage={currentPage}
+                    totalPages={contacts.totalPages}
+                />
             </div>
           </div>
         </div>

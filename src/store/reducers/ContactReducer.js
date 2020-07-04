@@ -14,8 +14,6 @@ const contactReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_MY_CONTACTS:
             return { ...state, myContacts: action.payload};
-        case SET_SAVED_CONTACT:
-            return saveStateList(state, 'myContacts', action.payload);
         case SET_DELETED_CONTACT:
             return removeFromStateList(state, 'myContacts', action.payload);
         default:

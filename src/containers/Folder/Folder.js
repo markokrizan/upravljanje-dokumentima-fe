@@ -4,8 +4,6 @@ import { useParams} from "react-router";
 import { debounce, isEmpty } from 'lodash';
 
 import MessageList from '../../components/MessageList';
-import Loader from '../../components/Loader';
-
 import { findFolderByName } from '../../util/helpers';
 
 export default function Folder({ 
@@ -18,16 +16,21 @@ export default function Folder({
 }){
     const params = useParams();
     const [folder, setFolder] = useState(null);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [query, setQuery] = useState(null);
 
     const getRefreshIcon = () => {
         return folder && folder.isSynced ? 'fa fa-check' : 'fa fa-refresh';
     }
 
-    const handleGetMessages = query => {
+    const handleGetMessages = passedPage => {
+        const page = passedPage || passedPage === 0 ? passedPage : currentPage;
+
         !isEmpty(folder) && getMessages({
             accountId: defaultAccount.id,
             folderId: folder.id,
-            query
+            query,
+            page
         })
     }
 
@@ -38,7 +41,9 @@ export default function Folder({
         })
     }
 
-    const searchMessages = debounce(query => handleGetMessages(query), 500);
+    const searchMessages = debounce(query => {
+        setQuery(query);
+    }, 500);
 
     useEffect(() => {
         setFolder(findFolderByName(folders, params['folderName']));
@@ -48,7 +53,11 @@ export default function Folder({
         if(folder) {
             handleGetMessages(null);
         }
-    }, [folder]);
+    }, [folder, currentPage]);
+
+    useEffect(() => {
+        handleGetMessages(0);
+    }, [query]);
 
     return (
         <>
@@ -72,7 +81,11 @@ export default function Folder({
                     </button>
                 </div>
             </div>
-            <MessageList messages={messages}/>
+            <MessageList 
+                messages={messages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
         </>
       )
 }
