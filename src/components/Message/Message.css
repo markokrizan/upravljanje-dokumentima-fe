@@ -2,3 +2,8 @@
     min-height: 200px;
     word-wrap: break-word;
 }
+
+.wrap-content { 
+    width: 100% !important;
+    word-wrap: break-word;
+}

@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import Folder from './Folder';
 
 import { syncFolder } from '../../store/actions/FolderActions';
-import { getMessages } from '../../store/actions/MessageActions';
+import { getMessages, saveMessage } from '../../store/actions/MessageActions';
 
 const mapStateToProps = state => {
     return {
@@ -17,7 +17,8 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = {
   syncFolder,
-  getMessages
+  getMessages,
+  saveMessage
 };
 
 const withConnect = connect(

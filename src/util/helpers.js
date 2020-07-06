@@ -1,5 +1,6 @@
 import config from '../config';
 import { isEmpty, sortBy } from 'lodash';
+import moment from 'moment';
 
 export const saveStateList = (state, stateKey, newEntity) => {
     let changed = 0;
@@ -88,3 +89,5 @@ export const capitalize = (str) => {
 }
 
 export const parseSort = sortItem => `${sortItem.fieldName},${sortItem.fieldDirection}`;
+
+export const formatDate = (dateString, format = 'MM/DD/YYYY') => moment(dateString).format(format);

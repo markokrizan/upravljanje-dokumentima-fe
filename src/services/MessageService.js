@@ -1,12 +1,13 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  MESSAGES: (accountId, folderId) => `/api/accounts/${accountId}/folders/${folderId}/messages`
+  ACCOUNT_MESSAGES: (accountId, folderId) => `/api/accounts/${accountId}/folders/${folderId}/messages`,
+  MESSAGES: '/api/messages'
 };
 
 class MessageService extends ApiService {
   getMessages = ({ accountId, folderId, query, page, sort }) => {
-    return this.apiClient.get(ENDPOINTS.MESSAGES(accountId, folderId), {
+    return this.apiClient.get(ENDPOINTS.ACCOUNT_MESSAGES(accountId, folderId), {
       params: {
         query,
         page,
@@ -14,6 +15,10 @@ class MessageService extends ApiService {
       }
     });
   };
+
+  saveMessage = payload => {
+    return this.apiClient.post(ENDPOINTS.MESSAGES, payload);
+  }
 }
 
 export const messageService = new MessageService();

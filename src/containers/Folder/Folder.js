@@ -13,7 +13,8 @@ export default function Folder({
     syncFolder, 
     getMessages, 
     messages,
-    isLoading
+    isLoading,
+    saveMessage
 }){
     const params = useParams();
     const [folder, setFolder] = useState(null);
@@ -120,8 +121,10 @@ export default function Folder({
             </div>
             <MessageList 
                 messages={messages}
+                folders={folders}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                saveMessage={saveMessage}
             />
         </>
       )

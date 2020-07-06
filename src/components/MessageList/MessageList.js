@@ -7,9 +7,10 @@ import Pagination from '../../components/Pagination';
 import { parseSearchResultField } from '../../util/helpers';
 import { MESSAGE_DEFAULT_PER_PAGE } from '../../util/constants';
 
-export default function MessageList({ messages, currentPage, setCurrentPage }) {
+export default function MessageList({ messages, currentPage, setCurrentPage, folders, saveMessage }) {
     const [modalShow, setModalShow] = useState(false);
     const [currentMessage, setCurrentMessage] = useState(null);
+    const [editingEnabled, setEditingEnabled] = useState(false);
 
     const renderTitle = message => {
         if (isEmpty(message)) {
@@ -35,6 +36,13 @@ export default function MessageList({ messages, currentPage, setCurrentPage }) {
         setModalShow(true);
     }
 
+    const toggleEdit = () => setEditingEnabled(!editingEnabled);
+
+    const closeModal = () => {
+        setEditingEnabled(false);
+        setModalShow(false)
+    }
+
     const renderMessageItems = () => {
         return messages && messages.content && messages.content.length ? (
             <>
@@ -54,7 +62,7 @@ export default function MessageList({ messages, currentPage, setCurrentPage }) {
                         </div>
                     ))}
                 </ul>
-                {messages.content.length <= MESSAGE_DEFAULT_PER_PAGE && <Pagination 
+                {messages.content.length >= MESSAGE_DEFAULT_PER_PAGE && <Pagination 
                     prevPage={() => setCurrentPage(currentPage - 1)}
                     nextPage={() => setCurrentPage(currentPage + 1)}
                     currentPage={currentPage}
@@ -65,9 +73,20 @@ export default function MessageList({ messages, currentPage, setCurrentPage }) {
                     show={modalShow}
                     header={'Message'}
                     body={
-                        <Message message={currentMessage} />}
-                    actions={<button className="btn btn-success" onClick={() => setModalShow(false)}>Close</button>}
-                    onHide={() => setModalShow(false)}
+                        <Message 
+                            message={currentMessage} 
+                            editingEnabled={editingEnabled}
+                            folders={folders}
+                            saveMessage={saveMessage}
+                        />
+                    }
+                    actions={
+                        <>
+                            <button className="btn btn-success" onClick={toggleEdit}>{ !editingEnabled ? 'Edit' : 'Done' }</button>
+                            <button className="btn btn-success" onClick={closeModal}>Close</button>
+                        </>
+                    }
+                    onHide={closeModal}
                 />
             </>) : (
                 <div className="w-100 text-center">No messages!</div>
