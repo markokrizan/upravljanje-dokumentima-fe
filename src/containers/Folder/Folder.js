@@ -38,6 +38,14 @@ export default function Folder({
         {
             fieldName : 'from',
             fieldDirection : 'desc'
+        },
+        {
+            fieldName : 'dateTime',
+            fieldDirection : 'asc'
+        },
+        {
+            fieldName : 'dateTime',
+            fieldDirection : 'desc'
         }
     ];
 
