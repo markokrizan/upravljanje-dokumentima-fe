@@ -7,6 +7,7 @@ import Pagination from '../../components/Pagination';
 import './Contacts.css';
 import SingleContact from '../../components/SingleContact';
 import ContactListItem from '../../components/ContactListItem';
+import { MESSAGE_DEFAULT_PER_PAGE, CONTACT_DEFAULT_PER_PAGE } from '../../util/constants';
 
 export default function Contacts({ getMyContacts, saveContact, deleteContact, contacts }){
     const [modalShow, setModalShow] = useState(false);
@@ -83,7 +84,7 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
                 {contactsPresent && renderContacts()}
                 {!contactsPresent && <div className="w-100 text-center">No contacts!</div>}
               </ul>
-              {contactsPresent && <Pagination
+              {contactsPresent && contacts.content.length >= CONTACT_DEFAULT_PER_PAGE && <Pagination
                     prevPage={() => setCurrentPage(currentPage - 1)}
                     nextPage={() => setCurrentPage(currentPage + 1)}
                     currentPage={currentPage}

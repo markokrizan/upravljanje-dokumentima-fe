@@ -1,5 +1,5 @@
 import config from '../config';
-import { isEmpty } from 'lodash';
+import { isEmpty, sortBy } from 'lodash';
 
 export const saveStateList = (state, stateKey, newEntity) => {
     let changed = 0;
@@ -41,7 +41,9 @@ export const getLastContactPhoto = contact => {
     return null;
   }
 
-  return `${config.API_BASE_URL}/${contact.photos[contact.photos.length - 1].path}`;
+  const sortedPhotos = sortBy(contact.photos, ['id'], ['desc']);
+
+  return `${config.API_BASE_URL}/${sortedPhotos[sortedPhotos.length - 1].path}`;
 }
 
 export const getAllContactPhotos = contact => {

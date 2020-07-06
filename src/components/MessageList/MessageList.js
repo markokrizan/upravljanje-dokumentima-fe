@@ -5,6 +5,7 @@ import Modal from '../Modal'
 import Message from '../Message';
 import Pagination from '../../components/Pagination';
 import { parseSearchResultField } from '../../util/helpers';
+import { MESSAGE_DEFAULT_PER_PAGE } from '../../util/constants';
 
 export default function MessageList({ messages, currentPage, setCurrentPage }) {
     const [modalShow, setModalShow] = useState(false);
@@ -53,12 +54,12 @@ export default function MessageList({ messages, currentPage, setCurrentPage }) {
                         </div>
                     ))}
                 </ul>
-                <Pagination 
+                {messages.content.length <= MESSAGE_DEFAULT_PER_PAGE && <Pagination 
                     prevPage={() => setCurrentPage(currentPage - 1)}
                     nextPage={() => setCurrentPage(currentPage + 1)}
                     currentPage={currentPage}
                     totalPages={messages.totalPages}
-                />
+                />}
 
                 <Modal
                     show={modalShow}

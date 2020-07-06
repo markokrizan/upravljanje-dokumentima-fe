@@ -30,7 +30,7 @@ export default function MyAccounts({
             <div className="row">
                 <div className="col-md-12" >
                     <div className="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
-                        <h3>Accounts in use:</h3>
+                        <h4>Accounts in use:</h4>
                         <ButtonToolbar>
                             <button className="btn btn-success"  onClick={() => setModalShow(true)}>+</button>
 

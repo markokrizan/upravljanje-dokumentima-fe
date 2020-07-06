@@ -1,0 +1,2 @@
+export const MESSAGE_DEFAULT_PER_PAGE = 10;
+export const CONTACT_DEFAULT_PER_PAGE = 10;
