@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 import Header from '../../components/Header';
+import Loader from '../../components/Loader';
 import Side from '../Side';
 import ProtectedRoutes from '../ProtectedRoutes';
 import PublicRoutes from '../PublicRoutes';
@@ -17,6 +18,7 @@ export default function AppLayout({logOut, isLoggedIn, loggedInUser, getMe}) {
   
   return (
       <Fragment>
+        <Loader/>
         <Header logOut = {logOut} loggedInUser = {loggedInUser}/>
         <Router>
           <Fragment>
