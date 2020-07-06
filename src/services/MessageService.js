@@ -5,11 +5,12 @@ const ENDPOINTS = {
 };
 
 class MessageService extends ApiService {
-  getMessages = ({ accountId, folderId, query, page }) => {
+  getMessages = ({ accountId, folderId, query, page, sort }) => {
     return this.apiClient.get(ENDPOINTS.MESSAGES(accountId, folderId), {
       params: {
         query,
-        page
+        page,
+        sort
       }
     });
   };

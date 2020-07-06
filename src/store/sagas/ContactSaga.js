@@ -42,7 +42,9 @@ export function* contactSave({ payload, meta: {setErrors} }) {
 export function* contactDelete({ payload }) {
   try {
     yield call(contactService.deleteContact, payload);
-    yield put(setDeletedContact(payload));
+  
+     const { data } = yield call(contactService.getMyContacts, payload);
+     yield put(setMyContacts(data));
   } catch (error) {
     console.error(error);
   }

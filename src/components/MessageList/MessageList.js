@@ -69,7 +69,7 @@ export default function MessageList({ messages, currentPage, setCurrentPage }) {
                     onHide={() => setModalShow(false)}
                 />
             </>) : (
-                <div>No messages!</div>
+                <div className="w-100 text-center">No messages!</div>
             );
     }
   

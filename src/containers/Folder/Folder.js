@@ -4,7 +4,8 @@ import { useParams} from "react-router";
 import { debounce, isEmpty } from 'lodash';
 
 import MessageList from '../../components/MessageList';
-import { findFolderByName } from '../../util/helpers';
+import Sort from '../../components/Sort';
+import { findFolderByName, parseSort } from '../../util/helpers';
 
 export default function Folder({ 
     defaultAccount, 
@@ -18,19 +19,40 @@ export default function Folder({
     const [folder, setFolder] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const [query, setQuery] = useState(null);
+    const [currentSort, setCurrentSort] = useState(null);
+
+    const sortItems = [
+        {
+            fieldName : 'subject',
+            fieldDirection : 'asc'
+        },
+        {
+            fieldName : 'subject',
+            fieldDirection : 'desc'
+        },
+        {
+            fieldName : 'from',
+            fieldDirection : 'asc'
+        },
+        {
+            fieldName : 'from',
+            fieldDirection : 'desc'
+        }
+    ];
 
     const getRefreshIcon = () => {
         return folder && folder.isSynced ? 'fa fa-check' : 'fa fa-refresh';
     }
 
-    const handleGetMessages = passedPage => {
+    const handleGetMessages = (passedPage) => {
         const page = passedPage || passedPage === 0 ? passedPage : currentPage;
 
         !isEmpty(folder) && getMessages({
             accountId: defaultAccount.id,
             folderId: folder.id,
             query,
-            page
+            page,
+            sort : currentSort
         })
     }
 
@@ -59,11 +81,21 @@ export default function Folder({
         handleGetMessages(0);
     }, [query]);
 
+    const handleChangeSort = value => {
+        setCurrentSort(parseSort(value));
+    }
+
+    useEffect(() => {
+        if(currentSort) {
+            handleGetMessages();
+        }
+    }, [currentSort])
+
     return (
         <>
             <div className="container-fluid">
                 <div className="row d-flex justify-content-between align-items-center border-dark mb-2 p-1">
-                    <div className="input-group w-25">
+                    <div className="input-group w-50">
                         <input 
                             type="text" 
                             className="form-control" 
@@ -71,7 +103,12 @@ export default function Folder({
                             placeholder="Search"
                             onChange={e => searchMessages(e.target.value ? e.target.value : null)}
                         />
+                        {!query && <Sort
+                            sortItems={sortItems}
+                            handleChangeSort={handleChangeSort}
+                        />}
                     </div>
+
                     <button 
                         className="btn btn-success" 
                         disabled={(folder && folder.isSynced) || isLoading}

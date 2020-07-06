@@ -24,10 +24,10 @@ export default function AppLayout({logOut, isLoggedIn, loggedInUser, getMe}) {
             <PublicRoutes/>
           </div>}
           {isLoggedIn && <div className="row main-app-area">
-            <aside className="col-md-2">
+            <aside className="col-md-2" style={{height : "900px"}}>
               <Side/>
             </aside>
-            <main className="col-md-10">
+            <main className="col-md-10 pl-0">
               <ProtectedRoutes/>
             </main>
           </div>}

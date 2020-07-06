@@ -24,7 +24,7 @@ export const saveStateList = (state, stateKey, newEntity) => {
 
 export const removeFromStateList = (state, stateKey, entityId) => {
     return {...state, [stateKey] : state[stateKey].filter((item) => {
-        return item.id != entityId;
+      return item.id != entityId;
     })}
 }
 
@@ -80,3 +80,9 @@ export const parseSearchResultField = (searchResult, fieldName) => {
 
   return searchResult.model[fieldName];
 }
+
+export const capitalize = (str) => {
+    return str && str[0].toUpperCase() + str.slice(1);
+}
+
+export const parseSort = sortItem => `${sortItem.fieldName},${sortItem.fieldDirection}`;

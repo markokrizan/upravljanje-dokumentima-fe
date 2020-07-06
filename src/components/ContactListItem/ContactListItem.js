@@ -45,7 +45,7 @@ export default function ContactListItem ({
                 <button className="btn btn-warning" onClick={() => setModalShow(true)}>
                     <i className="fa fa-pencil" aria-hidden="true"></i>
                 </button>
-                <button className="btn btn-danger" onClick={() => deleteContact(contact.id)}>
+                <button className="btn btn-danger" onClick={() => deleteContact(contact.model.id)}>
                     <i className="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
             </span>

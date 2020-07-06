@@ -38,9 +38,11 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
       handleGetContacts(0);
     }, [query]);
 
-    const renderContacts = () => contacts && contacts.content && contacts.content.map(contact => {
+    const contactsPresent = contacts && contacts.content && contacts.content.length > 0;
+
+    const renderContacts = () => contacts.content.map(contact => {
       return (<ContactListItem 
-          key={contact.id}
+          key={contact.model.id}
           contact={contact} 
           saveContact={saveContact}
           deleteContact={deleteContact}
@@ -78,14 +80,15 @@ export default function Contacts({ getMyContacts, saveContact, deleteContact, co
             </div>
             <div className="row">
               <ul className="list-group w-100 h-100">
-                {renderContacts() || <p>No contacts yet</p>}
+                {contactsPresent && renderContacts()}
+                {!contactsPresent && <div className="w-100 text-center">No contacts!</div>}
               </ul>
-              <Pagination 
+              {contactsPresent && <Pagination
                     prevPage={() => setCurrentPage(currentPage - 1)}
                     nextPage={() => setCurrentPage(currentPage + 1)}
                     currentPage={currentPage}
                     totalPages={contacts.totalPages}
-                />
+                />}
             </div>
           </div>
         </div>
