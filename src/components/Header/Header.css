@@ -18,3 +18,8 @@ h2 {
     display: inline;
     margin-left: 0.5em;
 }
+
+.main-heading {
+    font-size: 24px;
+    margin-left: 0.5em;
+}

@@ -12,8 +12,10 @@ export default function Header({logOut, loggedInUser}){
             <nav className="navbar navbar-light border-dark">
                 <div className="container-fluid">
                     <Link to='/' className="navbar-brand">
-                        <i className="fa fa-envelope-o fa-2x"></i>
-                        <h2>Universal mail client</h2>
+                        <i class="fa fa-envelope-open-o fa-2x"></i>
+                        <h2 className="main-heading">
+                            <em>Universal mail client</em>
+                        </h2>
                     </Link>
                     {loggedInUser && <Dropdown alignRight>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
