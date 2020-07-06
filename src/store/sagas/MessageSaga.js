@@ -17,7 +17,7 @@ export function* messagesGet({ payload }) {
   }
 }
 
-export function* messageSave({ payload }) {
+export function* messageSave({ payload, setModalShow }) {
   try {
     yield call(messageService.saveMessage, payload);
 
@@ -25,8 +25,12 @@ export function* messageSave({ payload }) {
       folderId : payload.folder.id,
       accountId : payload.folder.account.id
     }));
+
+    setModalShow(false);
   } catch (error) {
     console.error(error);
+
+    setModalShow(false);
   }
 }
 

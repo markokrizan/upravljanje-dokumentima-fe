@@ -78,6 +78,7 @@ export default function MessageList({ messages, currentPage, setCurrentPage, fol
                             editingEnabled={editingEnabled}
                             folders={folders}
                             saveMessage={saveMessage}
+                            setModalShow={setModalShow}
                         />
                     }
                     actions={

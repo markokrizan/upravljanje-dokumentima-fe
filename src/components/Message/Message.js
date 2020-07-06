@@ -8,7 +8,7 @@ import { capitalize, formatDate } from '../../util/helpers';
 import './Message.css';
 
 
-export default function Message({ message, editingEnabled, folders, saveMessage }) {
+export default function Message({ message, editingEnabled, folders, saveMessage, setModalShow }) {
     if(!message || isEmpty(message)) {
         return (<div>Error rendering message! </div>)
     }
@@ -74,7 +74,7 @@ export default function Message({ message, editingEnabled, folders, saveMessage 
     const handleSubmit = (values, { setErrors, setSubmitting }) => {
         const data = { ...values, folderId: parseInt(selectedFolderId) || message.folder.id }
 
-        saveMessage(data);
+        saveMessage(data, setModalShow);
     }
 
     return (
@@ -133,13 +133,13 @@ export default function Message({ message, editingEnabled, folders, saveMessage 
                         <div className="col-md-12 border content-container">{renderField('content', 'textarea')}</div>
                         {errors.content && <p>{errors.content}</p>}
                     </div>
-                    {/* {editingEnabled &&  <div className="row">
+                    {editingEnabled &&  <div className="row">
                         <div className="col-md-6 d-flex align-items-center border-right justify-content-end"><label>Folder:</label></div>
                         <div className="col-md-6 d-flex justify-content-start">
                             {renderFolderSelect()}
                             {errors.folderId && <p>{errors.folderId}</p>}
                         </div>
-                    </div>} */}
+                    </div>}
                     {editingEnabled && <div className="text-center m-2">
                             <button type="submit" className="btn btn-success">Save</button>
                     </div>}

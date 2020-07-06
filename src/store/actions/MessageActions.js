@@ -18,9 +18,10 @@ export const setMessages = payload => {
     }
 }
 
-export const saveMessage = payload => {
+export const saveMessage = (payload, setModalShow) => {
     return {
         type: SAVE_MESSAGE,
-        payload
+        payload,
+        setModalShow
     }
 }
